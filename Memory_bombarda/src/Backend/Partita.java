@@ -4,10 +4,38 @@
  */
 package Backend;
 
+import java.io.Serializable;
+import java.time.LocalDate;
+
 /**
  *
  * @author giuliobmb
  */
-public class Partita {
+public class Partita implements Serializable{
+    private Utente vincitore;
+    private Utente perdente;
+    private LocalDate data;
+
+    public Partita() {
+        this.vincitore = null;
+        this.perdente = null;
+        this.data = LocalDate.now();
+    }
+
+    public Utente getVincitore() {
+        return vincitore;
+    }
+
+    public void setVincitore(Utente vincitore) {
+        this.vincitore = vincitore;
+    }
+
+    public Utente getPerdente() {
+        return perdente;
+    }
+
+    public void setPerdente(Utente perdente) {
+        this.perdente = perdente;
+    }
     
 }

@@ -8,12 +8,6 @@ package Backend;
  *
  * @author giuliobmb
  */
-public class Bot extends Utente{
-    
-    public Bot() {
-        super("Bot", "");
-    }
-    
-    
+public class Game {
     
 }

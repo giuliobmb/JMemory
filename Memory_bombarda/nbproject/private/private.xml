@@ -3,18 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Backend/Partita.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Backend/GestoreMod.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Backend/GestoreUtenti.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Frontend/Register.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Frontend/Game.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Backend/Mod.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Backend/GestoreClassifica.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Backend/Bot.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Frontend/Login.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Backend/Utente.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Backend/GestoreFile.java</file>
-            <file>file:/C:/Users/gbmb/Desktop/Memory_bombarda/Memory_bombarda/src/Frontend/Main.java</file>
+            <file>file:/C:/Users/gbmb/Desktop/CODE/JMemory/Memory_bombarda/src/Backend/GestoreUtenti.java</file>
+            <file>file:/C:/Users/gbmb/Desktop/CODE/JMemory/Memory_bombarda/src/Backend/GestoreFile.java</file>
+            <file>file:/C:/Users/gbmb/Desktop/CODE/JMemory/Memory_bombarda/src/Frontend/Login.java</file>
+            <file>file:/C:/Users/gbmb/Desktop/CODE/JMemory/Memory_bombarda/src/Frontend/Register.java</file>
         </group>
     </open-files>
 </project-private>
