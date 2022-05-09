@@ -27,6 +27,7 @@ public class Register extends javax.swing.JFrame {
         initComponents();
         g = new GestoreUtenti();
         f = new GestoreFile();
+        errorLabel.setText("");
     }
 
     /**
@@ -44,7 +45,7 @@ public class Register extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         registerSubmit = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,7 +63,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("jLabel4");
+        errorLabel.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,7 +91,7 @@ public class Register extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(jLabel4)))
+                        .addComponent(errorLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,7 +110,7 @@ public class Register extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(registerSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(errorLabel)
                 .addContainerGap(78, Short.MAX_VALUE))
         );
 
@@ -118,10 +119,17 @@ public class Register extends javax.swing.JFrame {
 
     private void registerSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerSubmitActionPerformed
         // TODO add your handling code here:
-        if(nickField.getText() != "" && passwordField.getText() != ""){
+        
+        if(nickField.getText().compareToIgnoreCase("") != 0 && passwordField.getText().compareToIgnoreCase("") != 0){
             g.addUtente(new Utente(nickField.getText(), passwordField.getText()));
-            f.printLog(LocalDate.now().toString() + " | Aggiunto un nuovo utente");
+            errorLabel.setText("");
+            Thread.yield();
+
+        }else{
+            errorLabel.setText("campi invalidi");
+            System.out.println("campi invalidi");
         }
+            
         
         
     }//GEN-LAST:event_registerSubmitActionPerformed
@@ -129,10 +137,10 @@ public class Register extends javax.swing.JFrame {
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField nickField;
     private javax.swing.JTextField passwordField;
     private javax.swing.JButton registerSubmit;

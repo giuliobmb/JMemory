@@ -25,15 +25,23 @@ public class GestoreUtenti {
     public void addUtente(Utente u){
         utenti.add(u);
         g.scriviUtenti(utenti);
+        g.printLog("Aggiunto un nuovo utente " + u.toString());
     }
     
     public Utente logUtente(String nickName, String password){
         for (int i = 0; i < utenti.size(); i++) {
             Utente temp = utenti.get(i);
-            if(temp.getNickName().equalsIgnoreCase(nickName) && temp.getPassword().equalsIgnoreCase(password))
+            if(temp.getNickName().equalsIgnoreCase(nickName) && temp.getPassword().equalsIgnoreCase(password)){
+                g.printLog("Loggato utente: " + temp.toString());
                 return temp;
+            }    
         }
         return null;
     }
+
+    public ArrayList<Utente> getUtenti() {
+        return utenti;
+    }
+    
     
 }

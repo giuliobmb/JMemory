@@ -10,68 +10,66 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author giuliobmb
  */
 public class GestoreFile {
-    private FileOutputStream fileUtentiW; 
-    private FileInputStream fileUtentiR;
+    private String nomeBin;
     private String fileLogs;
 
     public GestoreFile(String fileUtenti, String fileLogs) {
-        try {
-            this.fileUtentiW = new FileOutputStream(fileUtenti);
-            this.fileUtentiR = new FileInputStream(fileUtenti);
-            this.fileLogs = fileLogs;
-        } catch (IOException ex) {
-            System.out.println("errore in apertura file");
-        }
+        this.nomeBin = fileUtenti;
+        this.fileLogs = fileLogs;
+
     }
     
     public GestoreFile() {
-        try {
-            this.fileUtentiW = new FileOutputStream("utenti.bin");
-            this.fileUtentiR = new FileInputStream("utenti.bin");
-            this.fileLogs = "logs.log";
-        } catch (IOException ex) {
-            System.out.println("errore in apertura file");
-        }
+        this.nomeBin = "utenti.bin";
+        this.fileLogs = "logs.log";
+        this.fileLogs = "logs.log";
+
     }
     
     public ArrayList<Utente> leggiUtenti(){
         try {
-            ObjectInputStream s = new ObjectInputStream(this.fileUtentiR);
+            FileInputStream f = new FileInputStream(this.nomeBin);
+            ObjectInputStream s = new ObjectInputStream(f);
             ArrayList<Utente> a = (ArrayList<Utente>)s.readObject();
-            s.close();
+            f.close();
             return a;
         } catch (IOException | ClassNotFoundException ex) {
-            System.out.println("errore lettura file" + ex);
+            System.out.println("errore leggiUtenti: " + ex);
         }
+
         return null;
     }
     
     public void scriviUtenti(ArrayList<Utente> a){
         try {
-            ObjectOutputStream s = new ObjectOutputStream(this.fileUtentiW);
+            FileOutputStream f = new FileOutputStream(this.nomeBin);
+            ObjectOutputStream s = new ObjectOutputStream(f);
             s.writeObject(a);
-            s.close();
+            f.close();
         } catch (IOException ex) {
-            System.out.println("errore scrittura file" + ex);
+            System.out.println("errore scriviUtenti" + ex);
         }
     }
     
     public void printLog(String log){
         try {
-            FileWriter logsFile = new FileWriter(this.fileLogs);
-            logsFile.append(log);
+            FileWriter logsFile = new FileWriter(this.fileLogs, true);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+            LocalDateTime now = LocalDateTime.now();  
+            logsFile.write(dtf.format(now) + " | " + log + "\n");
             logsFile.close();
         } catch (IOException ex) {
             System.out.println("Errore scrittura log" + ex);
         }
     }
+    
 }

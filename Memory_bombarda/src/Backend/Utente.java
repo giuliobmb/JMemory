@@ -45,4 +45,11 @@ public class Utente implements Serializable{
     public void addPartita(Partita p){
         partite.add(p);
     }
+
+    @Override
+    public String toString() {
+        return "Utente{" + "nickName=" + nickName + ", password=" + password + ", partite=" + partite + '}';
+    }
+    
+    
 }

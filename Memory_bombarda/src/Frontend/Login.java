@@ -121,6 +121,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         new Register().setVisible(true);
         
+        
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
