@@ -7,7 +7,6 @@ package Frontend;
 import Backend.GestoreFile;
 import Backend.GestoreUtenti;
 import Backend.Utente;
-import java.time.LocalDate;
 
 /**
  *
@@ -123,7 +122,7 @@ public class Register extends javax.swing.JFrame {
         if(nickField.getText().compareToIgnoreCase("") != 0 && passwordField.getText().compareToIgnoreCase("") != 0){
             g.addUtente(new Utente(nickField.getText(), passwordField.getText()));
             errorLabel.setText("");
-            Thread.yield();
+            this.setVisible(false);
 
         }else{
             errorLabel.setText("campi invalidi");

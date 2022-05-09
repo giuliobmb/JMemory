@@ -5,7 +5,7 @@
 package Backend;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -14,12 +14,12 @@ import java.time.LocalDate;
 public class Partita implements Serializable{
     private Utente vincitore;
     private Utente perdente;
-    private LocalDate data;
+    private LocalDateTime data;
 
     public Partita() {
         this.vincitore = null;
         this.perdente = null;
-        this.data = LocalDate.now();
+        this.data = LocalDateTime.now();
     }
 
     public Utente getVincitore() {

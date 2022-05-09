@@ -1,8 +1,39 @@
-2022/05/09 21:28:02 | Aggiunto un nuovo utente Utente{nickName=ciao, password=ciaopwd, partite=[]}
-2022/05/09 21:28:06 | Aggiunto un nuovo utente Utente{nickName=ciao, password=ciaopwd, partite=[]}
-2022/05/09 21:28:42 | Aggiunto un nuovo utente Utente{nickName=asddasciao, password=ciaopwasdsdadas, partite=[]}
-2022/05/09 21:28:46 | Aggiunto un nuovo utente Utente{nickName=asddasciao, password=ciaopwasdsdadas, partite=[]}
-2022/05/09 21:29:39 | Loggato utente: Utente{nickName=ciao, password=ciaopwd, partite=[]}
-2022/05/09 21:29:40 | Loggato utente: Utente{nickName=ciao, password=ciaopwd, partite=[]}
-2022/05/09 21:29:40 | Loggato utente: Utente{nickName=ciao, password=ciaopwd, partite=[]}
-2022/05/09 21:29:53 | Loggato utente: Utente{nickName=ciao, password=ciaopwd, partite=[]}
+2022/05/09 22:05:00 | Aggiunto un nuovo utente Utente{nickName=asd, password=asd, partite=[]}
+2022/05/09 22:21:24 | Aggiunto un nuovo utente Utente{nickName=giu, password=giu, partite=[]}
+2022/05/09 22:24:30 | Loggato utente: Utente{nickName=giu, password=giu, partite=[]}
+2022/05/09 22:41:17 | Aggiunto un nuovo utente Utente{nickName=giu, password=giu, id=77be561d-268a-4c42-a054-3432ba7a8532, partite=[]}
+2022/05/09 22:42:33 | Loggato utente: Utente{nickName=giu, password=giu, id=77be561d-268a-4c42-a054-3432ba7a8532, partite=[]}
+2022/05/09 22:42:33 | utente loggatoUtente{nickName=giu, password=giu, id=77be561d-268a-4c42-a054-3432ba7a8532, partite=[]}
+2022/05/09 22:43:05 | Aggiunto un nuovo utente Utente{nickName=y, password=y, id=506e8438-ba1f-46f3-9a64-b6808685b946, partite=[]}
+2022/05/09 22:44:03 | Loggato utente: Utente{nickName=y, password=y, id=506e8438-ba1f-46f3-9a64-b6808685b946, partite=[]}
+2022/05/09 22:44:03 | utente loggatoUtente{nickName=y, password=y, id=506e8438-ba1f-46f3-9a64-b6808685b946, partite=[]}
+2022/05/09 22:53:24 | Aggiunto un nuovo utente Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 22:53:27 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 22:53:27 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 22:57:36 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 22:57:36 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:09:10 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:09:10 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:17:40 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:17:40 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:20:51 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:20:51 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:24:22 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:24:22 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:25:03 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:25:04 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:25:46 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:25:47 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:26:11 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:26:11 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:27:14 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:27:14 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:28:54 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:28:54 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:29:38 | Loggato utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:29:38 | utente loggatoUtente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:29:41 | cambio password utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:29:41 | cambio password utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:29:41 | cambio password utente: Utente{nickName=t, password=t, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:29:49 | Loggato utente: Utente{nickName=t, password=rt, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}
+2022/05/09 23:29:49 | utente loggatoUtente{nickName=t, password=rt, id=33750717-c7b6-450b-a936-1c93a88c6215, partite=[]}

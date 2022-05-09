@@ -8,6 +8,14 @@ package Backend;
  *
  * @author giuliobmb
  */
-public class Game {
+public class GameB {
+    private Utente u;
+    private Utente e;
+    
+    private int pointU;
+    private int pointE;
+    
+    
+    
     
 }

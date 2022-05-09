@@ -4,6 +4,8 @@
  */
 package Frontend;
 
+import Backend.Utente;
+
 /**
  *
  * @author giuliobmb
@@ -13,7 +15,7 @@ public class Game extends javax.swing.JFrame {
     /**
      * Creates new form Game
      */
-    public Game() {
+    public Game(int mod, Utente giocatore, Utente avversario) {
         initComponents();
     }
 
@@ -28,12 +30,12 @@ public class Game extends javax.swing.JFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        nickLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        userPoints = new javax.swing.JLabel();
+        enemyNick = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        enemyPoints = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,17 +50,17 @@ public class Game extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("jLabel1");
+        nickLabel.setText("jLabel1");
 
         jLabel2.setText("Punteggio:");
 
-        jLabel3.setText("jLabel3");
+        userPoints.setText("jLabel3");
 
-        jLabel4.setText("jLabel4");
+        enemyNick.setText("jLabel4");
 
         jLabel5.setText("Punteggio:");
 
-        jLabel6.setText("jLabel6");
+        enemyPoints.setText("jLabel6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,17 +75,17 @@ public class Game extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(nickLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
+                        .addComponent(enemyNick))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
+                        .addComponent(userPoints)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)))
+                        .addComponent(enemyPoints)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -91,14 +93,14 @@ public class Game extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4))
+                    .addComponent(nickLabel)
+                    .addComponent(enemyNick))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3)
+                    .addComponent(userPoints)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(enemyPoints))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -110,13 +112,13 @@ public class Game extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel enemyNick;
+    private javax.swing.JLabel enemyPoints;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel nickLabel;
+    private javax.swing.JLabel userPoints;
     // End of variables declaration//GEN-END:variables
 }
