@@ -102,7 +102,7 @@ public class LoginPanel extends JPanel {
             Utente u = g.logUtente(nickLabel.getText(), pwdLabel.getText());
             if (u != null) {
                 this.utente = u;
-                Main.Ls.release();
+                Main.lS.release();
             } else {
                 errorLabel.setText("nickname o password non validi");
             }
@@ -119,7 +119,7 @@ public class LoginPanel extends JPanel {
         frame.setVisible (true);
         
         try {
-            Main.Rs.acquire();
+            Main.rS.acquire();
         } catch (InterruptedException ex) {
             Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -20,8 +20,8 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static Semaphore Ls;
-    public static Semaphore Rs;
+    public static Semaphore lS;
+    public static Semaphore rS;
     
     public static void main(String[] args) {
         // TODO code application logic here
@@ -30,8 +30,8 @@ public class Main {
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 
         /////////////////////////
-        Ls = new Semaphore(0);
-        Rs = new Semaphore(0);
+        lS = new Semaphore(0);
+        rS = new Semaphore(0);
         
         GestoreUtenti g = new GestoreUtenti();
         
@@ -44,7 +44,7 @@ public class Main {
         frame.setVisible (true);
         
         try {
-            Ls.acquire();
+            lS.acquire();
         } catch (InterruptedException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

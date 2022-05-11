@@ -21,7 +21,7 @@ public class RegisterPanel extends JPanel {
     private JTextField pwdLabel;
     private JLabel jcomp4;
     private JLabel jcomp5;
-    private JButton loginBtn;
+    private JButton registerBtn;
     private JLabel errorLabel;
     private GestoreUtenti g;
 
@@ -32,7 +32,7 @@ public class RegisterPanel extends JPanel {
         pwdLabel = new JTextField (5);
         jcomp4 = new JLabel ("Nickname");
         jcomp5 = new JLabel ("Password");
-        loginBtn = new JButton ("Registrati");
+        registerBtn = new JButton ("Registrati");
         errorLabel = new JLabel ("");
 
         //set components properties
@@ -49,7 +49,7 @@ public class RegisterPanel extends JPanel {
         add (pwdLabel);
         add (jcomp4);
         add (jcomp5);
-        add (loginBtn);
+        add (registerBtn);
         add (errorLabel);
 
         //set component bounds (only needed by Absolute Positioning)
@@ -58,7 +58,7 @@ public class RegisterPanel extends JPanel {
         pwdLabel.setBounds (305, 115, 170, 25);
         jcomp4.setBounds (230, 75, 100, 25);
         jcomp5.setBounds (230, 110, 100, 25);
-        loginBtn.setBounds (305, 175, 100, 25);
+        registerBtn.setBounds (305, 175, 100, 25);
         errorLabel.setBounds (305, 230, 250, 35);
         
         initListeners();
@@ -66,21 +66,21 @@ public class RegisterPanel extends JPanel {
     }
     
     public void initListeners() {
-        ActionListener loginB = new ActionListener() {
+        ActionListener Listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(e.getSource() == loginBtn)
+                if(e.getSource() == registerBtn)
                     handleRegister();
             }
         };
-        loginBtn.addActionListener(loginB);
+        registerBtn.addActionListener(Listener);
     }
 
     
     public void handleRegister() {
         if (nickLabel.getText().compareToIgnoreCase("") != 0 && pwdLabel.getText().compareToIgnoreCase("") != 0) {
             g.addUtente(new Utente(nickLabel.getText(), pwdLabel.getText()));
-            Main.Rs.release();
+            Main.rS.release();
         } else {
             errorLabel.setText("campi invalidi");
         }
