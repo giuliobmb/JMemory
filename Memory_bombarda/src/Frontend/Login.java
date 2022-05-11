@@ -17,13 +17,15 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Game
      */
-    GestoreUtenti g;
+    private GestoreUtenti g;
+    public Utente utente;
+    private int mode;
     
-    
-    public Login() {
+    public Login(int mode) {
         initComponents();
         errorLabel.setText("");
         g = new GestoreUtenti();
+        this.mode = mode;
     }
 
     /**
@@ -142,7 +144,9 @@ public class Login extends javax.swing.JFrame {
             Utente u = g.logUtente(nickField.getText(), passwordField.getText());
 
             if(u != null){
-                new Main(u).setVisible(true);
+                this.utente = u;
+                if(mode == 0)
+                    new Main(u).setVisible(true);
                 this.setVisible(false);
             }else{
                 errorLabel.setText("nickname o password non validi");
@@ -186,7 +190,7 @@ public class Login extends javax.swing.JFrame {
 
         /* Create and display the form */
 
-        new Login().setVisible(true);
+        new Login(0).setVisible(true);
 
     }
 

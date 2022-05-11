@@ -129,9 +129,9 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(modalita, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(giocaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
+                .addGap(90, 90, 90))
         );
 
         pack();
@@ -145,10 +145,23 @@ public class Main extends javax.swing.JFrame {
 
     private void giocaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giocaButtonActionPerformed
         // TODO add your handling code here:
-        if(modalita.getModel().toString().equalsIgnoreCase("1 VS 1")){
+
+        if(modalita.getSelectedItem().toString().equalsIgnoreCase("1 VS 1")){
+
+            Login l = new Login(1);
+            l.setVisible(true);
+            this.setVisible(false);
+            while(l.utente == null){}
+            Game g = new Game(1, this.user, l.utente);
+            g.setVisible(true);
             
             
-        }else if(modalita.getModel().toString().equalsIgnoreCase("SOLITARIO")){
+            
+        }else if(modalita.getSelectedItem().toString().equalsIgnoreCase("Solitario")){
+            Game g = new Game(2, this.user, null);
+            this.setVisible(false);
+            g.setVisible(true);
+            
             
         }else{
             
