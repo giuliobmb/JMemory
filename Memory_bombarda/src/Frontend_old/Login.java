@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package Frontend_old;
 
 import Backend.GestoreUtenti;
 import Backend.Utente;
@@ -159,7 +159,13 @@ public class Login extends javax.swing.JFrame {
             
         
     }//GEN-LAST:event_loginButtonActionPerformed
-
+    
+    public int log(){
+        if(this.utente == null)
+            return 0;
+        return 1;
+    }
+    
     /**
      * @param args the command line arguments
      */
