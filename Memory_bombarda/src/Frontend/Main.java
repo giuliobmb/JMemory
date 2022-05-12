@@ -21,17 +21,17 @@ public class Main {
      * @param args the command line arguments
      */
     public static Semaphore lS;
-    public static Semaphore rS;
     
     public static void main(String[] args) {
         // TODO code application logic here
 
         JFrame frame = new JFrame ("JMemory - giuliobmb");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 400);
+        
 
         /////////////////////////
         lS = new Semaphore(0);
-        rS = new Semaphore(0);
         
         GestoreUtenti g = new GestoreUtenti();
         
@@ -55,7 +55,8 @@ public class Main {
         
         System.out.println(u.toString());
         
-        //frame.removeAll();
+        frame.removeAll();
+        frame.add(new RegisterPanel(g));
         
     }
     

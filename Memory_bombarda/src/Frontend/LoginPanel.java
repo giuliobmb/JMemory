@@ -112,19 +112,14 @@ public class LoginPanel extends JPanel {
     }
     
     public void handleRegister(){
+        RegisterPanel reg = new RegisterPanel(this.g);
+        
         JFrame frame = new JFrame ("JMemory - Registrati");
-        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-        frame.add(new RegisterPanel(g));
+        frame.setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE);
+        frame.add(reg);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible (true);
-        
-        try {
-            Main.rS.acquire();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        frame.setVisible(false);
         
     }
     

@@ -12,6 +12,8 @@ import Backend.GestoreUtenti;
 import Backend.Utente;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -26,6 +28,7 @@ public class RegisterPanel extends JPanel {
     private GestoreUtenti g;
 
     public RegisterPanel(GestoreUtenti g) {
+        
         //construct components
         nameLabel = new JLabel ("JMemory - Registrati");
         nickLabel = new JTextField (5);
@@ -53,7 +56,7 @@ public class RegisterPanel extends JPanel {
         add (errorLabel);
 
         //set component bounds (only needed by Absolute Positioning)
-        nameLabel.setBounds (315, 5, 100, 50);
+        nameLabel.setBounds (315, 5, 180, 50);
         nickLabel.setBounds (305, 75, 170, 25);
         pwdLabel.setBounds (305, 115, 170, 25);
         jcomp4.setBounds (230, 75, 100, 25);
@@ -63,14 +66,16 @@ public class RegisterPanel extends JPanel {
         
         initListeners();
         this.g = g;
+
     }
     
     public void initListeners() {
         ActionListener Listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 if(e.getSource() == registerBtn)
-                    handleRegister();
+                    handleRegister();    
             }
         };
         registerBtn.addActionListener(Listener);
@@ -80,7 +85,8 @@ public class RegisterPanel extends JPanel {
     public void handleRegister() {
         if (nickLabel.getText().compareToIgnoreCase("") != 0 && pwdLabel.getText().compareToIgnoreCase("") != 0) {
             g.addUtente(new Utente(nickLabel.getText(), pwdLabel.getText()));
-            Main.rS.release();
+            System.out.println("utente aggiunto");
+            errorLabel.setText("");
         } else {
             errorLabel.setText("campi invalidi");
         }
