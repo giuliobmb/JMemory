@@ -7,6 +7,7 @@ package Frontend_old;
 import Backend.GestoreFile;
 import Backend.GestoreUtenti;
 import Backend.Utente;
+import java.util.concurrent.Semaphore;
 
 /**
  *
@@ -21,6 +22,8 @@ public class Main extends javax.swing.JFrame {
     GestoreUtenti gu;
     GestoreFile gf;
     
+    public static Semaphore s;
+    
     
     public Main(Utente u) {
         initComponents();
@@ -31,6 +34,7 @@ public class Main extends javax.swing.JFrame {
         this.user = u;
         jLabel2.setText(u.getNickName());
         jLabel4.setText(String.valueOf(u.getWins()));
+        s = new Semaphore(0);
     }
 
     /**
@@ -150,14 +154,12 @@ public class Main extends javax.swing.JFrame {
 
             Login l = new Login(1);
             l.setVisible(true);
+            
             this.setVisible(false);
             Game g = new Game(1, this.user, l.utente);
             
             g.setVisible(true);
-            
-            
-            
-            
+  
         }else if(modalita.getSelectedItem().toString().equalsIgnoreCase("Solitario")){
             Game g = new Game(2, this.user, null);
             this.setVisible(false);
