@@ -16,29 +16,18 @@ public class Utente implements Serializable{
     private String nickName;
     private String password;
     private String id;
-    private ArrayList<Partita> partite;
+    private int punti;
 
     public Utente(String nickName, String password) {
         this.nickName = nickName;
         this.password = password;
         this.id = UUID.randomUUID().toString();
-        this.partite = new ArrayList<Partita>();
+        this.punti = 0;
     }
 
     public String getNickName() {
         return nickName;
     }
-    
-    public int getWins(){
-        int cont = 0;
-        for (int i = 0; i < partite.size(); i++) {
-            Partita p = partite.get(i);
-            if(p.getVincitore().getId() == this.id)
-                cont++;
-        }
-        return cont;
-    }
-    
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
@@ -51,22 +40,28 @@ public class Utente implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public ArrayList<Partita> getPartite() {
-        return partite;
-    }
-    
-    public void addPartita(Partita p){
-        partite.add(p);
-    }
 
     public String getId() {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getPunti() {
+        return punti;
+    }
+
+    public void setPunti(int punti) {
+        this.punti = punti;
+    }
+
     @Override
     public String toString() {
-        return "Utente{" + "nickName=" + nickName + ", password=" + password + ", id=" + id + ", partite=" + partite + '}';
+        return "Utente{" + "nickName=" + nickName + ", password=" + password + ", id=" + id + ", punti=" + punti + '}';
     }
+
+    
 
 }

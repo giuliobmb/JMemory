@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/AWTForms/Frame.java to edit this template
  */
-package Frontend_2;
+package Frontend;
 
 import Backend.GestoreFile;
 import Backend.GestoreUtenti;
@@ -70,14 +70,15 @@ public class MemoryGame extends java.awt.Frame {
         onevsai = new java.awt.Button();
         lobbyPassword = new java.awt.Button();
         jSeparator1 = new javax.swing.JSeparator();
-        nameU = new java.awt.Label();
-        jLabel4 = new javax.swing.JLabel();
-        label9 = new java.awt.Label();
-        puntiU = new java.awt.Label();
-        nameA = new java.awt.Label();
-        label12 = new java.awt.Label();
-        puntiA = new java.awt.Label();
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        utenteLabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        puntiU = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        avversarioLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        puntiA = new javax.swing.JLabel();
 
         LoginForm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -190,27 +191,34 @@ public class MemoryGame extends java.awt.Frame {
             }
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 40));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 640, 0));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 640, 330));
 
-        nameU.setText("label8");
-        add(nameU, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label9.setText("Punti: ");
-        add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        utenteLabel.setText("jLabel3");
+        jPanel2.add(utenteLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
-        puntiU.setText("label10");
-        add(puntiU, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+        jLabel5.setText("Punteggio: ");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        nameA.setText("label11");
-        add(nameA, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
+        puntiU.setText("jLabel8");
+        jPanel2.add(puntiU, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
-        label12.setText("Punti: ");
-        add(label12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 80));
 
-        puntiA.setText("label13");
-        add(puntiA, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, -1));
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 600, 300));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        avversarioLabel.setText("jLabel4");
+        jPanel3.add(avversarioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, -1));
+
+        jLabel6.setText("Punteggio: ");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+
+        puntiA.setText("jLabel7");
+        jPanel3.add(puntiA, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 320, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -254,7 +262,7 @@ public class MemoryGame extends java.awt.Frame {
     private void lobbyPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lobbyPasswordActionPerformed
         // TODO add your handling code here:
         
-        this.CambiaPassword.setSize(400, 200);
+        this.CambiaPassword.setSize(this.CambiaPassword.getMinimumSize());
         this.CambiaPassword.setVisible(true);
         
     }//GEN-LAST:event_lobbyPasswordActionPerformed
@@ -269,7 +277,7 @@ public class MemoryGame extends java.awt.Frame {
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
         // TODO add your handling code here:
-        this.RegisterForm.setSize(450, 350);
+        this.RegisterForm.setSize(this.RegisterForm.getMinimumSize());
         this.RegisterForm.setVisible(true);
     }//GEN-LAST:event_regBtnActionPerformed
 
@@ -298,9 +306,9 @@ public class MemoryGame extends java.awt.Frame {
     
     private void initLobby(){
         
-        this.Lobby.setSize(450, 350);
+        this.Lobby.setSize(600, 400);
         this.nicknameLabel.setText(this.utente.getNickName());
-        this.winsLabel.setText(String.valueOf(this.utente.getWins()));
+        this.winsLabel.setText(String.valueOf(this.utente.getPunti()));
         this.Lobby.setVisible(true);
         
         
@@ -309,9 +317,11 @@ public class MemoryGame extends java.awt.Frame {
     private void initGame(){
         switch (this.gameMode) {
             case 1:
-                this.setSize(550, 450);
-                this.nameU.setText(this.utente.getNickName());
-                this.nameA.setText(this.avversario.getNickName());
+                this.setSize(this.getMinimumSize());
+                this.utenteLabel.setText(this.utente.getNickName());
+                this.avversarioLabel.setText(this.avversario.getNickName());
+                
+                
                 this.Lobby.setVisible(false);
                 this.setVisible(true);
                 break;
@@ -350,39 +360,40 @@ public class MemoryGame extends java.awt.Frame {
     private javax.swing.JFrame Lobby;
     private javax.swing.JFrame LoginForm;
     private javax.swing.JFrame RegisterForm;
+    private javax.swing.JLabel avversarioLabel;
     private java.awt.Button cambiaPwd;
     private java.awt.Label errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private java.awt.Label label1;
-    private java.awt.Label label12;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
     private java.awt.Label label5;
     private java.awt.Label label6;
     private java.awt.Label label7;
-    private java.awt.Label label9;
     private java.awt.Button lobbyPassword;
     private java.awt.Button loginBtn;
-    private java.awt.Label nameA;
-    private java.awt.Label nameU;
     private java.awt.TextField newPwdLabel;
     private java.awt.TextField nickField;
     private java.awt.TextField nickLabel;
     private javax.swing.JLabel nicknameLabel;
     private java.awt.Button onevsai;
     private java.awt.Button onevsone;
-    private java.awt.Label puntiA;
-    private java.awt.Label puntiU;
+    private javax.swing.JLabel puntiA;
+    private javax.swing.JLabel puntiU;
     private java.awt.TextField pwdField;
     private java.awt.TextField pwdLabel;
     private java.awt.Button regBtn;
     private java.awt.Button registerBtn;
     private java.awt.Button solitario;
+    private javax.swing.JLabel utenteLabel;
     private javax.swing.JLabel winsLabel;
     // End of variables declaration//GEN-END:variables
 }
