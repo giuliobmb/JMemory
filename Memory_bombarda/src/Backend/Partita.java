@@ -28,39 +28,41 @@ public class Partita implements Serializable{
     private int nTessere;
     private LocalDateTime data;
 
-    public Partita(Utente u, Utente a, ArrayList<Tessera> tessere){
+    public Partita(Utente u, Utente a, int Ntessere){
         this.utente = u;
         this.avversario = a;
-        this.tessere = tessere;
+        this.tessere = new ArrayList<Tessera>();
+        this.loadTessere(Ntessere);
         this.data = LocalDateTime.now();
-        this.nTessere = 0;
     }
-    public Partita(Utente u, ArrayList<Tessera> tessere){
+    public Partita(Utente u, int Ntessere){
         this.utente = u;
         this.avversario = null;
-        this.tessere = tessere;
+        this.tessere = new ArrayList<Tessera>();
+        this.loadTessere(Ntessere);
         this.data = LocalDateTime.now();
-        this.nTessere = 0;
     }
     
-    public Partita(ArrayList<Tessera> tessere) {
+    public Partita(int Ntessere) {
         this.utente = null;
         this.avversario = null;
-        this.tessere = tessere;
+        this.tessere = new ArrayList<Tessera>();
+        this.loadTessere(Ntessere);
         this.data = LocalDateTime.now();
-        this.nTessere = 0;
     }
     
     
-    public void loadTessere(){
+    public void loadTessere(int nTessere){
         BufferedImage img = null;
-        for (int i = 1; i < this.nTessere+1; i++) {
+        for (int i = 0; i < this.nTessere/2; i++) {
             try {
                 img = ImageIO.read(new File(String.valueOf(i) + ".png"));
             } catch (IOException ex) {
                     System.out.println("impossibile leggere le immagini");
             }
             tessere.add(new Tessera(img));
+            if(i%2==0)
+                i--;
             
         }
         

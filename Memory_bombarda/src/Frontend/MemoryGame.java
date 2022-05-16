@@ -192,6 +192,8 @@ public class MemoryGame extends java.awt.Frame {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 640, 0));
+
+        jPanel1.setLayout(new java.awt.GridLayout(1, 4, 2, 0));
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 640, 330));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
