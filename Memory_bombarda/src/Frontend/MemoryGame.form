@@ -3,6 +3,9 @@
 <Form version="1.2" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.FrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JFrame" name="LoginForm">
+      <Properties>
+        <Property name="defaultCloseOperation" type="int" value="3"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="false"/>
@@ -202,6 +205,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="Lobby">
+      <Properties>
+        <Property name="defaultCloseOperation" type="int" value="3"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="false"/>
@@ -296,6 +302,11 @@
       </SubComponents>
     </Container>
   </NonVisualComponents>
+  <Properties>
+    <Property name="locationRelativeTo" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+      <ComponentRef name="default"/>
+    </Property>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
@@ -327,7 +338,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="tesserePanel">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="0" y="90" width="640" height="330"/>
@@ -335,9 +346,10 @@
       </Constraints>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
-        <Property name="columns" type="int" value="4"/>
+        <Property name="columns" type="int" value="5"/>
         <Property name="horizontalGap" type="int" value="2"/>
-        <Property name="rows" type="int" value="1"/>
+        <Property name="rows" type="int" value="9"/>
+        <Property name="verticalGap" type="int" value="2"/>
       </Layout>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">

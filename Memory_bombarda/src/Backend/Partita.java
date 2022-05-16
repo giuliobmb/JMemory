@@ -25,7 +25,7 @@ public class Partita implements Serializable{
     private int puntiU;
     private int puntiA;
     private ArrayList<Tessera> tessere;
-    private int nTessere;
+    private int gameMode;
     private LocalDateTime data;
 
     public Partita(Utente u, Utente a, int Ntessere){
@@ -34,6 +34,8 @@ public class Partita implements Serializable{
         this.tessere = new ArrayList<Tessera>();
         this.loadTessere(Ntessere);
         this.data = LocalDateTime.now();
+        this.puntiA = 0;
+        this.puntiU = 0;
     }
     public Partita(Utente u, int Ntessere){
         this.utente = u;
@@ -41,6 +43,8 @@ public class Partita implements Serializable{
         this.tessere = new ArrayList<Tessera>();
         this.loadTessere(Ntessere);
         this.data = LocalDateTime.now();
+        this.puntiA = 0;
+        this.puntiU = 0;
     }
     
     public Partita(int Ntessere) {
@@ -49,26 +53,33 @@ public class Partita implements Serializable{
         this.tessere = new ArrayList<Tessera>();
         this.loadTessere(Ntessere);
         this.data = LocalDateTime.now();
+        this.puntiA = 0;
+        this.puntiU = 0;
     }
     
     
     public void loadTessere(int nTessere){
         BufferedImage img = null;
-        for (int i = 0; i < this.nTessere/2; i++) {
+        for (int i = 0; i < nTessere/2; i++) {
             try {
-                img = ImageIO.read(new File(String.valueOf(i) + ".png"));
+                img = ImageIO.read(new File("./tessere/" + String.valueOf(i) + ".png"));
             } catch (IOException ex) {
                     System.out.println("impossibile leggere le immagini");
             }
             tessere.add(new Tessera(img));
-            if(i%2==0)
-                i--;
+            tessere.add(new Tessera(img));
             
         }
         
     }
     
-    
+    public void addPunto(char p){
+        if(p == 'a' || p == 'A'){
+            this.puntiA++;
+        }else{
+            this.puntiU++;
+        }
+    }
     
 
     public Utente getUtente() {

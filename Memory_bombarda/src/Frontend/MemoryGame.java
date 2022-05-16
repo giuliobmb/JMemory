@@ -6,7 +6,9 @@ package Frontend;
 
 import Backend.GestoreFile;
 import Backend.GestoreUtenti;
+import Backend.Partita;
 import Backend.Utente;
+import java.util.ArrayList;
 
 /**
  *
@@ -70,7 +72,7 @@ public class MemoryGame extends java.awt.Frame {
         onevsai = new java.awt.Button();
         lobbyPassword = new java.awt.Button();
         jSeparator1 = new javax.swing.JSeparator();
-        jPanel1 = new javax.swing.JPanel();
+        tesserePanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         utenteLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -80,6 +82,7 @@ public class MemoryGame extends java.awt.Frame {
         jLabel6 = new javax.swing.JLabel();
         puntiA = new javax.swing.JLabel();
 
+        LoginForm.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         LoginForm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -149,6 +152,7 @@ public class MemoryGame extends java.awt.Frame {
         });
         CambiaPassword.getContentPane().add(cambiaPwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
 
+        Lobby.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         Lobby.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nicknameLabel.setText("jLabel2");
@@ -193,8 +197,8 @@ public class MemoryGame extends java.awt.Frame {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 640, 0));
 
-        jPanel1.setLayout(new java.awt.GridLayout(1, 4, 2, 0));
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 640, 330));
+        tesserePanel.setLayout(new java.awt.GridLayout(9, 5, 2, 2));
+        add(tesserePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 640, 330));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -279,7 +283,7 @@ public class MemoryGame extends java.awt.Frame {
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
         // TODO add your handling code here:
-        this.RegisterForm.setSize(this.RegisterForm.getMinimumSize());
+        this.RegisterForm.setSize(600, 400);
         this.RegisterForm.setVisible(true);
     }//GEN-LAST:event_regBtnActionPerformed
 
@@ -323,6 +327,12 @@ public class MemoryGame extends java.awt.Frame {
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setText(this.avversario.getNickName());
                 
+                Partita p = new Partita(this.utente, this.avversario, 30);
+                ArrayList<Tessera> t = p.getTessere();
+                
+                for (int i = 0; i < t.size(); i++) {
+                    this.tesserePanel.add(t.get(i));
+                }
                 
                 this.Lobby.setVisible(false);
                 this.setVisible(true);
@@ -369,7 +379,6 @@ public class MemoryGame extends java.awt.Frame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
@@ -395,6 +404,7 @@ public class MemoryGame extends java.awt.Frame {
     private java.awt.Button regBtn;
     private java.awt.Button registerBtn;
     private java.awt.Button solitario;
+    private javax.swing.JPanel tesserePanel;
     private javax.swing.JLabel utenteLabel;
     private javax.swing.JLabel winsLabel;
     // End of variables declaration//GEN-END:variables
