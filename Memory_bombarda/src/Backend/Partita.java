@@ -66,8 +66,10 @@ public class Partita implements Serializable{
             } catch (IOException ex) {
                     System.out.println("impossibile leggere le immagini");
             }
-            tessere.add(new Tessera(img));
-            tessere.add(new Tessera(img));
+            Tessera t = new Tessera(img);
+            t.setSize(30, 30);
+            tessere.add(t);
+            tessere.add(t);
             
         }
         

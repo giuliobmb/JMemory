@@ -4,6 +4,8 @@
  */
 package Frontend;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 import java.util.UUID;
@@ -22,23 +24,35 @@ public class Tessera extends javax.swing.JPanel {
     private String id;
     private int tessera;
     private JLabel pic;
+    private BufferedImage picture;
     
-    public Tessera(BufferedImage picture ) {
+    public Tessera(BufferedImage picture) {
         initComponents();
+        this.setSize(30, 30);
         this.id = this.id = UUID.randomUUID().toString();
         this.tessera = 0;
+        this.picture = picture;
         this.pic = new JLabel(new ImageIcon(picture));
+        //this.pic.setSize(30, 30);
     }
     
     public void giraTessera(){
+        System.out.println("tessera girata " + this.tessera);
+        
         if(tessera == 0){
             this.tessera = 1;
+            System.out.println(this.picture);
+            this.pic.setSize(50, 50);
             this.add(this.pic);
+            this.revalidate();
+            this.repaint();
         }else{
             this.tessera = 0;
             this.removeAll();
         }
     }
+    
+    
 
     @Override
     public boolean equals(Object obj) {

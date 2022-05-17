@@ -9,6 +9,9 @@ import Backend.GestoreUtenti;
 import Backend.Partita;
 import Backend.Utente;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -197,7 +200,7 @@ public class MemoryGame extends java.awt.Frame {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 640, 0));
 
-        tesserePanel.setLayout(new java.awt.GridLayout(9, 5, 2, 2));
+        tesserePanel.setLayout(new javax.swing.OverlayLayout(tesserePanel));
         add(tesserePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 640, 330));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -323,20 +326,31 @@ public class MemoryGame extends java.awt.Frame {
     private void initGame(){
         switch (this.gameMode) {
             case 1:
+                int ntessere = 30;
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setText(this.avversario.getNickName());
                 
-                Partita p = new Partita(this.utente, this.avversario, 30);
+                Partita p = new Partita(this.utente, this.avversario, ntessere);
                 ArrayList<Tessera> t = p.getTessere();
                 
                 for (int i = 0; i < t.size(); i++) {
+                    t.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                            tesseraAction(evt);
+                        }
+                    });
                     this.tesserePanel.add(t.get(i));
                 }
                 
                 this.Lobby.setVisible(false);
                 this.setVisible(true);
+                
+                
+                
                 break;
+
             case 2:
                 
                 
@@ -351,6 +365,12 @@ public class MemoryGame extends java.awt.Frame {
         
     }
     
+    public void tesseraAction(java.awt.event.MouseEvent evt){
+        ((Tessera)evt.getSource()).giraTessera();
+        System.out.println("evt");
+        this.revalidate();
+        this.repaint();
+    }
     
     /////////////////////////
     /**
