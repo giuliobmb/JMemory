@@ -8,6 +8,7 @@ import Backend.GestoreFile;
 import Backend.GestoreUtenti;
 import Backend.Partita;
 import Backend.Utente;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -27,6 +28,7 @@ public class MemoryGame extends java.awt.Frame {
     private GestoreFile f;
     private Utente utente;
     private Utente avversario;
+    private Partita p;
     private int logMode;
     private int gameMode;
     
@@ -35,6 +37,10 @@ public class MemoryGame extends java.awt.Frame {
         g = new GestoreUtenti();
         f = new GestoreFile();
         logMode = 0;
+        GridLayout l = new GridLayout(3, 3);
+        l.setHgap(20);
+        l.setVgap(20);
+        this.tesserePanel.setLayout(l);
     }
 
     /**
@@ -192,6 +198,7 @@ public class MemoryGame extends java.awt.Frame {
         });
         Lobby.getContentPane().add(lobbyPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 130, 30));
 
+        setLocationRelativeTo(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 exitForm(evt);
@@ -200,8 +207,11 @@ public class MemoryGame extends java.awt.Frame {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 640, 0));
 
-        tesserePanel.setLayout(new java.awt.GridLayout(9, 9, 5, 5));
-        add(tesserePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 640, 330));
+        java.awt.GridBagLayout tesserePanelLayout = new java.awt.GridBagLayout();
+        tesserePanelLayout.columnWidths = new int[] {0};
+        tesserePanelLayout.rowHeights = new int[] {0};
+        tesserePanel.setLayout(tesserePanelLayout);
+        add(tesserePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 1190, 620));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -227,7 +237,7 @@ public class MemoryGame extends java.awt.Frame {
         puntiA.setText("jLabel7");
         jPanel3.add(puntiA, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 320, 80));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 320, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -272,6 +282,7 @@ public class MemoryGame extends java.awt.Frame {
         // TODO add your handling code here:
         
         this.CambiaPassword.setSize(this.CambiaPassword.getMinimumSize());
+        this.CambiaPassword.setLocationRelativeTo(null);
         this.CambiaPassword.setVisible(true);
         
     }//GEN-LAST:event_lobbyPasswordActionPerformed
@@ -280,6 +291,7 @@ public class MemoryGame extends java.awt.Frame {
         // TODO add your handling code here:
         
         this.g.cambiaPassword(utente, this.newPwdLabel.getText());
+        
         this.CambiaPassword.setVisible(false);
         
     }//GEN-LAST:event_cambiaPwdActionPerformed
@@ -287,6 +299,7 @@ public class MemoryGame extends java.awt.Frame {
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
         // TODO add your handling code here:
         this.RegisterForm.setSize(600, 400);
+        this.RegisterForm.setLocationRelativeTo(null);
         this.RegisterForm.setVisible(true);
     }//GEN-LAST:event_regBtnActionPerformed
 
@@ -307,6 +320,7 @@ public class MemoryGame extends java.awt.Frame {
         // TODO add your handling code here:
         
         this.logMode = 1;
+        this.LoginForm.setLocationRelativeTo(null);
         this.LoginForm.setVisible(true);
         
     }//GEN-LAST:event_onevsoneActionPerformed
@@ -318,6 +332,7 @@ public class MemoryGame extends java.awt.Frame {
         this.Lobby.setSize(600, 400);
         this.nicknameLabel.setText(this.utente.getNickName());
         this.winsLabel.setText(String.valueOf(this.utente.getPunti()));
+        this.Lobby.setLocationRelativeTo(null);
         this.Lobby.setVisible(true);
         
         
@@ -331,23 +346,30 @@ public class MemoryGame extends java.awt.Frame {
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setText(this.avversario.getNickName());
                 
-                Partita p = new Partita(this.utente, this.avversario, ntessere);
+                this.p = new Partita(this.utente, this.avversario, ntessere);
                 ArrayList<Tessera> t = p.getTessere();
+                
+                this.puntiA.setText(String.valueOf(this.p.getPuntiA()));
+                this.puntiU.setText(String.valueOf(this.p.getPuntiU()));
                 
                 for (int i = 0; i < t.size(); i++) {
                     t.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
                         @Override
                         public void mouseReleased(java.awt.event.MouseEvent evt) {
-                            ((Tessera)evt.getSource()).giraTessera();
-                            System.out.println("evt");
+                            eventHandle(evt);
+                            
                         }
                     });
-                    Tessera temp = t.get(i);
-                    temp.setSize(5, 5);
-                    this.tesserePanel.add(temp);
+                    Tessera te = t.get(i);
+                    System.out.println(te.getSize());
+                    this.tesserePanel.add(te);
+                    
+                    this.puntiA.setText(String.valueOf(p.getPuntiA()));
+                    this.puntiU.setText(String.valueOf(p.getPuntiU()));
                 }
                 
                 this.Lobby.setVisible(false);
+                this.setLocationRelativeTo(null);
                 this.setVisible(true);
                 
                 
@@ -368,11 +390,14 @@ public class MemoryGame extends java.awt.Frame {
         
     }
     
-    public void tesseraAction(java.awt.event.MouseEvent evt){
-        ((Tessera)evt.getSource()).giraTessera();
-
+    public void eventHandle(java.awt.event.MouseEvent evt){
+        
+        p.handleEvent(evt);
+        System.out.println("evt");
+        this.puntiA.setText(String.valueOf(p.getPuntiA()));
+        this.puntiU.setText(String.valueOf(p.getPuntiU()));
     }
-    
+
     /////////////////////////
     /**
      * @param args the command line arguments
@@ -382,6 +407,7 @@ public class MemoryGame extends java.awt.Frame {
             public void run() {
                 MemoryGame g = new MemoryGame();
                 g.LoginForm.setSize(400, 350);
+                g.LoginForm.setLocationRelativeTo(null);
                 g.LoginForm.setVisible(true);
             }
         });

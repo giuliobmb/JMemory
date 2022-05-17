@@ -5,6 +5,7 @@
 package Backend;
 
 import Frontend.Tessera;
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +25,10 @@ public class Partita implements Serializable{
     private Utente avversario;
     private int puntiU;
     private int puntiA;
+    private Tessera[] coppiaU;
+    private Tessera[] coppiaA;
+    private int turno;
+    
     private ArrayList<Tessera> tessere;
     private int gameMode;
     private LocalDateTime data;
@@ -36,6 +41,9 @@ public class Partita implements Serializable{
         this.data = LocalDateTime.now();
         this.puntiA = 0;
         this.puntiU = 0;
+        this.coppiaA = new Tessera[2];
+        this.coppiaU = new Tessera[2];
+        this.turno = 1;
     }
     public Partita(Utente u, int Ntessere){
         this.utente = u;
@@ -45,6 +53,9 @@ public class Partita implements Serializable{
         this.data = LocalDateTime.now();
         this.puntiA = 0;
         this.puntiU = 0;
+        this.coppiaA = new Tessera[2];
+        this.coppiaU = new Tessera[2];
+        this.turno = 1;
     }
     
     public Partita(int Ntessere) {
@@ -55,21 +66,40 @@ public class Partita implements Serializable{
         this.data = LocalDateTime.now();
         this.puntiA = 0;
         this.puntiU = 0;
+        this.coppiaA = new Tessera[2];
+        this.coppiaU = new Tessera[2];
+        this.turno = 1;
     }
     
     
     public void loadTessere(int nTessere){
         BufferedImage img = null;
+        int index = 0;
         for (int i = 0; i < nTessere/2; i++) {
+                
             try {
                 img = ImageIO.read(new File("./tessere/" + String.valueOf(i) + ".png"));
             } catch (IOException ex) {
                     System.out.println("impossibile leggere le immagini");
             }
             Tessera t = new Tessera(img);
-            t.setSize(30, 30);
+            t.setPosition(index);
             tessere.add(t);
+            index++;
+            
+        }
+        for (int i = 0; i < nTessere/2; i++) {
+                
+            try {
+                img = ImageIO.read(new File("./tessere/" + String.valueOf(i) + ".png"));
+            } catch (IOException ex) {
+                    System.out.println("impossibile leggere le immagini");
+            }
+            Tessera t = new Tessera(img);
+
+            t.setPosition(index);
             tessere.add(t);
+            index++;
             
         }
         
@@ -81,6 +111,63 @@ public class Partita implements Serializable{
         }else{
             this.puntiU++;
         }
+    }
+    
+    public void handleEvent(java.awt.event.MouseEvent evt){
+        //((Tessera)evt.getSource()).giraTessera();
+        if(turno%2!=0){
+        
+            if(this.coppiaU[0] == null){
+                this.coppiaU[0] = (Tessera)evt.getSource();
+                this.coppiaU[0].giraTessera();
+            }else if(this.coppiaU[1] == null){
+                if(this.coppiaU[0].getPosition() == ((Tessera)evt.getSource()).getPosition())
+                    return;
+                if(this.coppiaU[0] == (Tessera)evt.getSource()){
+                    this.coppiaU[1] = (Tessera)evt.getSource();
+                    this.coppiaU[1].giraTessera();
+                    this.tessere.remove((Tessera)evt.getSource());
+                    this.puntiU++;
+                }else{
+                    this.coppiaU[1] = (Tessera)evt.getSource();
+                    this.coppiaU[1].giraTessera();
+                    try {
+                        Thread.sleep(1500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Partita.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    this.coppiaU[0].giraTessera();
+                    this.coppiaU[1].giraTessera();
+                    this.coppiaU[0] = null;
+                    this.coppiaU[1] = null;
+                }
+                this.turno = (this.turno+1)%2;   
+            }
+
+        }else{
+        
+            if(this.coppiaA[0] == null){
+                this.coppiaA[0] = (Tessera)evt.getSource();
+                this.coppiaA[0].giraTessera();
+
+            }else if(this.coppiaA[1] == null){
+                if(this.coppiaA[0].getPosition() == ((Tessera)evt.getSource()).getPosition())
+                    return;
+                if(this.coppiaA[0] == (Tessera)evt.getSource()){
+                    this.coppiaA[1] = (Tessera)evt.getSource();
+                    this.tessere.remove((Tessera)evt.getSource());
+                    this.puntiU++;
+                }else{
+                    this.coppiaA[0] = null;
+                    this.coppiaA[1] = null;
+                }
+                this.turno = (this.turno+1)%2;
+            }
+            
+        }
+        
+        System.out.println(turno);
+        
     }
     
 
