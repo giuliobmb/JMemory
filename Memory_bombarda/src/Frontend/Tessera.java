@@ -87,6 +87,24 @@ public class Tessera extends JButton {
     public void setPosition(int position) {
         this.position = position;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    
+    
+    
+    @Override
+    public String toString() {
+        return "Tessera{" + "id=" + id + ", tessera=" + tessera + ", picture=" + picture + ", dorso=" + dorso + ", position=" + position + '}';
+    }
+    
+    
     
     
     

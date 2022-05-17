@@ -43,7 +43,7 @@ public class Partita implements Serializable{
         this.puntiU = 0;
         this.coppiaA = new Tessera[2];
         this.coppiaU = new Tessera[2];
-        this.turno = 1;
+        this.turno = 0;
     }
     public Partita(Utente u, int Ntessere){
         this.utente = u;
@@ -55,7 +55,7 @@ public class Partita implements Serializable{
         this.puntiU = 0;
         this.coppiaA = new Tessera[2];
         this.coppiaU = new Tessera[2];
-        this.turno = 1;
+        this.turno = 0;
     }
     
     public Partita(int Ntessere) {
@@ -68,7 +68,7 @@ public class Partita implements Serializable{
         this.puntiU = 0;
         this.coppiaA = new Tessera[2];
         this.coppiaU = new Tessera[2];
-        this.turno = 1;
+        this.turno = 0;
     }
     
     
@@ -96,7 +96,7 @@ public class Partita implements Serializable{
                     System.out.println("impossibile leggere le immagini");
             }
             Tessera t = new Tessera(img);
-
+            t.setId(tessere.get(i).getId());
             t.setPosition(index);
             tessere.add(t);
             index++;
@@ -115,54 +115,41 @@ public class Partita implements Serializable{
     
     public void handleEvent(java.awt.event.MouseEvent evt){
         //((Tessera)evt.getSource()).giraTessera();
-        if(turno%2!=0){
-        
+        if(turno == 0){
+            System.out.println("turno utente");
             if(this.coppiaU[0] == null){
                 this.coppiaU[0] = (Tessera)evt.getSource();
                 this.coppiaU[0].giraTessera();
-            }else if(this.coppiaU[1] == null){
-                if(this.coppiaU[0].getPosition() == ((Tessera)evt.getSource()).getPosition())
-                    return;
-                if(this.coppiaU[0] == (Tessera)evt.getSource()){
-                    this.coppiaU[1] = (Tessera)evt.getSource();
-                    this.coppiaU[1].giraTessera();
-                    this.tessere.remove((Tessera)evt.getSource());
+            }else{
+                this.coppiaU[1] = (Tessera)evt.getSource();
+                //if(this.coppiaU[0].getPosition() == this.coppiaU[1].getPosition())
+                //    return;
+                this.coppiaU[1].giraTessera();
+                System.out.println(this.coppiaU[0].getId());
+                System.out.println(this.coppiaU[1].getId());
+                if(this.coppiaU[0].getId().compareToIgnoreCase(this.coppiaU[1].getId()) == 0){
+                    System.out.println("punto utente");
                     this.puntiU++;
-                }else{
-                    this.coppiaU[1] = (Tessera)evt.getSource();
-                    this.coppiaU[1].giraTessera();
-                    try {
-                        Thread.sleep(1500);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(Partita.class.getName()).log(Level.SEVERE, null, ex);
-                    }
                     this.coppiaU[0].giraTessera();
                     this.coppiaU[1].giraTessera();
-                    this.coppiaU[0] = null;
-                    this.coppiaU[1] = null;
+                    this.coppiaU = new Tessera[2];
+                    this.turno = 1;
+                }else{
+                    this.coppiaU[0].giraTessera();
+                    this.coppiaU[1].giraTessera();
+                    this.coppiaU = new Tessera[2];
+                    this.turno = 1;
                 }
-                this.turno = (this.turno+1)%2;   
+                
+                
             }
+            
+            
+            
 
         }else{
-        
-            if(this.coppiaA[0] == null){
-                this.coppiaA[0] = (Tessera)evt.getSource();
-                this.coppiaA[0].giraTessera();
-
-            }else if(this.coppiaA[1] == null){
-                if(this.coppiaA[0].getPosition() == ((Tessera)evt.getSource()).getPosition())
-                    return;
-                if(this.coppiaA[0] == (Tessera)evt.getSource()){
-                    this.coppiaA[1] = (Tessera)evt.getSource();
-                    this.tessere.remove((Tessera)evt.getSource());
-                    this.puntiU++;
-                }else{
-                    this.coppiaA[0] = null;
-                    this.coppiaA[1] = null;
-                }
-                this.turno = (this.turno+1)%2;
-            }
+            System.out.println("turno avversario");
+            this.turno = 0;
             
         }
         

@@ -185,9 +185,19 @@ public class MemoryGame extends java.awt.Frame {
         Lobby.getContentPane().add(onevsone, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         solitario.setLabel("Solitario");
+        solitario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solitarioActionPerformed(evt);
+            }
+        });
         Lobby.getContentPane().add(solitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
 
         onevsai.setLabel("1VSAI");
+        onevsai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onevsaiActionPerformed(evt);
+            }
+        });
         Lobby.getContentPane().add(onevsai, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
         lobbyPassword.setLabel("Cambia Password");
@@ -320,10 +330,27 @@ public class MemoryGame extends java.awt.Frame {
         // TODO add your handling code here:
         
         this.logMode = 1;
+        this.gameMode = 1;
         this.LoginForm.setLocationRelativeTo(null);
         this.LoginForm.setVisible(true);
         
     }//GEN-LAST:event_onevsoneActionPerformed
+
+    private void solitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solitarioActionPerformed
+        // TODO add your handling code here:
+        this.gameMode = 2;
+        this.Lobby.setVisible(false);
+        initGame();
+        
+    }//GEN-LAST:event_solitarioActionPerformed
+
+    private void onevsaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onevsaiActionPerformed
+        // TODO add your handling code here:
+        this.gameMode = 3;
+        this.Lobby.setVisible(false);
+        initGame();
+        
+    }//GEN-LAST:event_onevsaiActionPerformed
 
     ///////////////////////
     
@@ -396,6 +423,7 @@ public class MemoryGame extends java.awt.Frame {
         System.out.println("evt");
         this.puntiA.setText(String.valueOf(p.getPuntiA()));
         this.puntiU.setText(String.valueOf(p.getPuntiU()));
+        System.out.println(p.getPuntiU());
     }
 
     /////////////////////////
