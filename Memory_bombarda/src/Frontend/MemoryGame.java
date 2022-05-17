@@ -200,7 +200,7 @@ public class MemoryGame extends java.awt.Frame {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 640, 0));
 
-        tesserePanel.setLayout(new javax.swing.OverlayLayout(tesserePanel));
+        tesserePanel.setLayout(new java.awt.GridLayout(9, 9, 5, 5));
         add(tesserePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 640, 330));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -337,11 +337,14 @@ public class MemoryGame extends java.awt.Frame {
                 for (int i = 0; i < t.size(); i++) {
                     t.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
                         @Override
-                        public void mouseClicked(java.awt.event.MouseEvent evt) {
-                            tesseraAction(evt);
+                        public void mouseReleased(java.awt.event.MouseEvent evt) {
+                            ((Tessera)evt.getSource()).giraTessera();
+                            System.out.println("evt");
                         }
                     });
-                    this.tesserePanel.add(t.get(i));
+                    Tessera temp = t.get(i);
+                    temp.setSize(5, 5);
+                    this.tesserePanel.add(temp);
                 }
                 
                 this.Lobby.setVisible(false);
@@ -367,9 +370,7 @@ public class MemoryGame extends java.awt.Frame {
     
     public void tesseraAction(java.awt.event.MouseEvent evt){
         ((Tessera)evt.getSource()).giraTessera();
-        System.out.println("evt");
-        this.revalidate();
-        this.repaint();
+
     }
     
     /////////////////////////

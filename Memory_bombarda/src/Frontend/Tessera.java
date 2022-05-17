@@ -37,11 +37,10 @@ public class Tessera extends javax.swing.JPanel {
     }
     
     public void giraTessera(){
-        System.out.println("tessera girata " + this.tessera);
+        System.out.println("tessera girata " + this.id);
         
         if(tessera == 0){
             this.tessera = 1;
-            System.out.println(this.picture);
             this.pic.setSize(50, 50);
             this.add(this.pic);
             this.revalidate();
