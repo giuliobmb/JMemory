@@ -91,7 +91,6 @@ public class MemoryGame extends java.awt.Frame {
         jScrollPane2 = new javax.swing.JScrollPane();
         clArea = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         tesserePanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         utenteLabel = new javax.swing.JLabel();
@@ -264,7 +263,6 @@ public class MemoryGame extends java.awt.Frame {
             }
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 640, 0));
 
         java.awt.GridBagLayout tesserePanelLayout = new java.awt.GridBagLayout();
         tesserePanelLayout.columnWidths = new int[] {0};
@@ -597,7 +595,6 @@ public class MemoryGame extends java.awt.Frame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
