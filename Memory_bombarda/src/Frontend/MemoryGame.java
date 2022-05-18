@@ -9,10 +9,12 @@ import Backend.GestoreUtenti;
 import Backend.Partita;
 import Backend.Utente;
 import java.awt.GridLayout;
+import java.awt.Label;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  *
@@ -31,6 +33,7 @@ public class MemoryGame extends java.awt.Frame {
     private Partita p;
     private int logMode;
     private int gameMode;
+    private int ntessere;
     
     public MemoryGame() {
         initComponents();
@@ -366,15 +369,16 @@ public class MemoryGame extends java.awt.Frame {
     }
     
     private void initGame(){
+        ArrayList<Tessera> t;
         switch (this.gameMode) {
             case 1:
-                int ntessere = 30;
+                this.ntessere = 8;
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setText(this.avversario.getNickName());
                 
                 this.p = new Partita(this.utente, this.avversario, ntessere);
-                ArrayList<Tessera> t = p.getTessere();
+                t = p.getTessere();
                 
                 this.puntiA.setText(String.valueOf(this.p.getPuntiA()));
                 this.puntiU.setText(String.valueOf(this.p.getPuntiU()));
@@ -384,11 +388,9 @@ public class MemoryGame extends java.awt.Frame {
                         @Override
                         public void mouseReleased(java.awt.event.MouseEvent evt) {
                             eventHandle(evt);
-                            
                         }
                     });
                     Tessera te = t.get(i);
-                    System.out.println(te.getSize());
                     this.tesserePanel.add(te);
                     
                     this.puntiA.setText(String.valueOf(p.getPuntiA()));
@@ -404,6 +406,33 @@ public class MemoryGame extends java.awt.Frame {
                 break;
 
             case 2:
+                this.ntessere = 8;
+                this.setSize(this.getMinimumSize());
+                this.utenteLabel.setText(this.utente.getNickName());
+                this.avversarioLabel.setVisible(false);
+                
+                this.p = new Partita(this.utente, this.avversario, ntessere);
+                t = p.getTessere();
+                
+                this.puntiA.setText(String.valueOf(this.p.getPuntiA()));
+                
+                for (int i = 0; i < t.size(); i++) {
+                    t.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
+                        public void mouseReleased(java.awt.event.MouseEvent evt) {
+                            eventHandle(evt);
+                        }
+                    });
+                    Tessera te = t.get(i);
+                    this.tesserePanel.add(te);
+                    
+                    this.puntiA.setText(String.valueOf(p.getPuntiA()));
+                    this.puntiU.setText(String.valueOf(p.getPuntiU()));
+                }
+                
+                this.Lobby.setVisible(false);
+                this.setLocationRelativeTo(null);
+                this.setVisible(true);
                 
                 
                 break;
@@ -421,9 +450,49 @@ public class MemoryGame extends java.awt.Frame {
         
         p.handleEvent(evt);
         System.out.println("evt");
-        this.puntiA.setText(String.valueOf(p.getPuntiA()));
-        this.puntiU.setText(String.valueOf(p.getPuntiU()));
-        System.out.println(p.getPuntiU());
+        //if(gameMode == 1){
+            this.puntiA.setText(String.valueOf(p.getPuntiA()));
+            this.puntiU.setText(String.valueOf(p.getPuntiU()));
+        //}
+        this.tesserePanel.removeAll();
+        ArrayList<Tessera> t = p.getTessere();
+        for (int i = 0; i < t.size(); i++) {
+            Tessera te = t.get(i);
+            this.tesserePanel.add(te);
+        }
+        System.out.println(p.getTessere().size());
+        if(this.p.getTessere().size() == 0 && this.gameMode == 1){
+            this.tesserePanel.removeAll();
+            this.revalidate();
+            this.repaint();
+            Label victory = new Label();
+            if(p.getPuntiU() > p.getPuntiA()){
+                this.utente.addPunto();
+                victory.setText("Vittoria " + p.getUtente().getNickName());
+                System.out.println("vittoria utente");//this.add(new JLabel("Vittoria " + p.getUtente().getNickName()));
+            }
+            else{
+                this.avversario.addPunto();
+                victory.setText("Vittoria " + p.getAvversario().getNickName());
+                System.out.println("vittoria avversario");//this.add(new JLabel("Vittoria " + p.getAvversario().getNickName()));
+            }
+            //this.tesserePanel.add(victory);
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(MemoryGame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.setVisible(false);
+            this.Lobby.setVisible(true);
+            
+        }else if(this.p.getTessere().size() == 0 && this.gameMode == 2){
+            this.setVisible(false);
+            this.Lobby.setVisible(true);
+        }else if(this.p.getTessere().size() == 0 && this.gameMode == 3){
+            this.setVisible(false);
+            this.Lobby.setVisible(true);
+        }
+        
     }
 
     /////////////////////////

@@ -46,7 +46,7 @@ public class Tessera extends JButton {
     }
     
     public void giraTessera(){
-        
+
         if(tessera == 0){
             this.tessera = 1;
             this.setIcon(new ImageIcon(this.picture));
