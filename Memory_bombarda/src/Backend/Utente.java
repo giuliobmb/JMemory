@@ -59,6 +59,7 @@ public class Utente implements Serializable{
     
     public void addPunto(){
         this.punti++;
+        
     }
 
     @Override

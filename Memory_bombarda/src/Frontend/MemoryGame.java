@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 
 /**
@@ -85,8 +86,9 @@ public class MemoryGame extends java.awt.Frame {
         lobbyPassword = new java.awt.Button();
         classificaBtn = new java.awt.Button();
         Classifica = new javax.swing.JFrame();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        classificaL = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        clArea = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         tesserePanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -223,9 +225,17 @@ public class MemoryGame extends java.awt.Frame {
         });
         Lobby.getContentPane().add(classificaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 140, 30));
 
-        jScrollPane1.setViewportView(classificaL);
+        Classifica.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Classifica.getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        clArea.setColumns(20);
+        clArea.setRows(5);
+        jScrollPane2.setViewportView(clArea);
+
+        Classifica.getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 400, 240));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel3.setText("Classifica JMemory");
+        Classifica.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
 
         setLocationRelativeTo(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -373,8 +383,15 @@ public class MemoryGame extends java.awt.Frame {
 
     private void classificaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classificaBtnActionPerformed
         // TODO add your handling code here:
-        ArrayList<Utente> classifica = 
+        ArrayList<Utente> c = g.getClassifica();
+        String list = "";
+        for (int i = 0; i < c.size(); i++) {
+            list += "Giocatore: " + c.get(i).getNickName() + " punti: " + c.get(i).getPunti() + "\n";
+        }
+        this.clArea.setText(list);
         
+        this.Classifica.setSize(600, 400);
+        this.Classifica.setLocationRelativeTo(null);
         this.Classifica.setVisible(true);
         
     }//GEN-LAST:event_classificaBtnActionPerformed
@@ -430,7 +447,7 @@ public class MemoryGame extends java.awt.Frame {
                 break;
 
             case 2:
-                this.ntessere = 8;
+                this.ntessere = 18;
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setVisible(false);
@@ -492,11 +509,13 @@ public class MemoryGame extends java.awt.Frame {
             Label victory = new Label();
             if(p.getPuntiU() > p.getPuntiA()){
                 this.utente.addPunto();
+                g.scriviUtenti();
                 victory.setText("Vittoria " + p.getUtente().getNickName());
                 System.out.println("vittoria utente");//this.add(new JLabel("Vittoria " + p.getUtente().getNickName()));
             }
             else{
                 this.avversario.addPunto();
+                g.scriviUtenti();
                 victory.setText("Vittoria " + p.getAvversario().getNickName());
                 System.out.println("vittoria avversario");//this.add(new JLabel("Vittoria " + p.getAvversario().getNickName()));
             }
@@ -543,16 +562,17 @@ public class MemoryGame extends java.awt.Frame {
     private javax.swing.JFrame RegisterForm;
     private javax.swing.JLabel avversarioLabel;
     private java.awt.Button cambiaPwd;
+    private javax.swing.JTextArea clArea;
     private java.awt.Button classificaBtn;
-    private javax.swing.JList<String> classificaL;
     private java.awt.Label errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private java.awt.Label label1;
     private java.awt.Label label2;

@@ -60,13 +60,25 @@ public class GestoreUtenti {
     }
     
     public ArrayList<Utente> getClassifica(){
-        ArrayList<Utente> c = new ArrayList<Utente>();
+        ArrayList<Utente> c = this.utenti;
         
-        
+        for (int i = 0; i < c.size(); i++) {
+            for (int j = i; j < c.size(); j++) {
+                if(c.get(i).getPunti() < c.get(j).getPunti()){
+                    Utente t = c.get(i);
+                    c.set(i, c.get(j));
+                    c.set(j, t);
+                }
+            }
+        }
+        return c;
     }
     
     public ArrayList<Utente> getUtenti() {
         return utenti;
+    }
+    public void scriviUtenti(){
+        g.scriviUtenti(utenti);
     }
     
     
