@@ -57,14 +57,15 @@ public class MemoryGame extends java.awt.Frame {
     private void initComponents() {
 
         LoginForm = new javax.swing.JFrame();
+        LoginPanel = new javax.swing.JPanel();
+        errorLabel = new java.awt.Label();
+        regBtn = new java.awt.Button();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
         nickField = new java.awt.TextField();
         pwdField = new java.awt.TextField();
         loginBtn = new java.awt.Button();
-        regBtn = new java.awt.Button();
-        errorLabel = new java.awt.Label();
         RegisterForm = new javax.swing.JFrame();
         label4 = new java.awt.Label();
         nickLabel = new java.awt.TextField();
@@ -102,39 +103,56 @@ public class MemoryGame extends java.awt.Frame {
         puntiA = new javax.swing.JLabel();
 
         LoginForm.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        LoginForm.setBackground(new java.awt.Color(67, 169, 154));
         LoginForm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        label1.setText("JMemory - Login");
-        LoginForm.getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 210, 60));
+        LoginPanel.setBackground(new java.awt.Color(67, 169, 154));
+        LoginPanel.setToolTipText("");
+        LoginPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label2.setText("Nickname");
-        LoginForm.getContentPane().add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+        errorLabel.setBackground(new java.awt.Color(67, 169, 154));
+        LoginPanel.add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 190, -1));
 
-        label3.setText("Password");
-        LoginForm.getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
-
-        nickField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        LoginForm.getContentPane().add(nickField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 120, -1));
-        LoginForm.getContentPane().add(pwdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 120, -1));
-
-        loginBtn.setLabel("Login");
-        loginBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginBtnActionPerformed(evt);
-            }
-        });
-        LoginForm.getContentPane().add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 120, 50));
-
+        regBtn.setBackground(new java.awt.Color(255, 217, 130));
+        regBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         regBtn.setLabel("Registrati");
         regBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regBtnActionPerformed(evt);
             }
         });
-        LoginForm.getContentPane().add(regBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 120, 40));
-        LoginForm.getContentPane().add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 190, -1));
+        LoginPanel.add(regBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 120, 40));
+
+        label1.setBackground(new java.awt.Color(67, 169, 154));
+        label1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("JMemory - Login");
+        LoginPanel.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, 60));
+
+        label2.setBackground(new java.awt.Color(67, 169, 154));
+        label2.setForeground(new java.awt.Color(255, 255, 255));
+        label2.setText("Nickname");
+        LoginPanel.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+
+        label3.setBackground(new java.awt.Color(67, 169, 154));
+        label3.setForeground(new java.awt.Color(255, 255, 255));
+        label3.setText("Password");
+        LoginPanel.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
+
+        nickField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        LoginPanel.add(nickField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 120, -1));
+        LoginPanel.add(pwdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 120, -1));
+
+        loginBtn.setBackground(new java.awt.Color(255, 217, 130));
+        loginBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        loginBtn.setLabel("Login");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
+        LoginPanel.add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 120, 50));
+
+        LoginForm.getContentPane().add(LoginPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         RegisterForm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -158,11 +176,10 @@ public class MemoryGame extends java.awt.Frame {
         });
         RegisterForm.getContentPane().add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 180, 40));
 
-        CambiaPassword.setMinimumSize(new java.awt.Dimension(300, 200));
         CambiaPassword.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Inserisci la nuova password");
-        CambiaPassword.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 170, 30));
+        CambiaPassword.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 140, 30));
         CambiaPassword.getContentPane().add(newPwdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 150, 20));
 
         cambiaPwd.setLabel("Cambia password");
@@ -565,6 +582,7 @@ public class MemoryGame extends java.awt.Frame {
     private javax.swing.JFrame Classifica;
     private javax.swing.JFrame Lobby;
     private javax.swing.JFrame LoginForm;
+    private javax.swing.JPanel LoginPanel;
     private javax.swing.JFrame RegisterForm;
     private javax.swing.JLabel avversarioLabel;
     private java.awt.Button cambiaPwd;
