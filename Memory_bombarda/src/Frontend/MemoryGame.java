@@ -413,7 +413,7 @@ public class MemoryGame extends java.awt.Frame {
         ArrayList<Tessera> t;
         switch (this.gameMode) {
             case 1:
-                this.ntessere = 8;
+                this.ntessere = 28;
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setText(this.avversario.getNickName());
@@ -447,7 +447,7 @@ public class MemoryGame extends java.awt.Frame {
                 break;
 
             case 2:
-                this.ntessere = 18;
+                this.ntessere = 28;
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setVisible(false);
