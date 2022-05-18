@@ -58,7 +58,13 @@ public class GestoreUtenti {
         }
         
     }
-
+    
+    public ArrayList<Utente> getClassifica(){
+        ArrayList<Utente> c = new ArrayList<Utente>();
+        
+        
+    }
+    
     public ArrayList<Utente> getUtenti() {
         return utenti;
     }

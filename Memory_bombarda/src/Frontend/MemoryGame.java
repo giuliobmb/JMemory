@@ -40,7 +40,7 @@ public class MemoryGame extends java.awt.Frame {
         g = new GestoreUtenti();
         f = new GestoreFile();
         logMode = 0;
-        GridLayout l = new GridLayout(3, 3);
+        GridLayout l = new GridLayout(4, 4);
         l.setHgap(20);
         l.setVgap(20);
         this.tesserePanel.setLayout(l);
@@ -83,6 +83,10 @@ public class MemoryGame extends java.awt.Frame {
         solitario = new java.awt.Button();
         onevsai = new java.awt.Button();
         lobbyPassword = new java.awt.Button();
+        classificaBtn = new java.awt.Button();
+        Classifica = new javax.swing.JFrame();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        classificaL = new javax.swing.JList<>();
         jSeparator1 = new javax.swing.JSeparator();
         tesserePanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -210,6 +214,18 @@ public class MemoryGame extends java.awt.Frame {
             }
         });
         Lobby.getContentPane().add(lobbyPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 130, 30));
+
+        classificaBtn.setLabel("Visualizza classifica");
+        classificaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classificaBtnActionPerformed(evt);
+            }
+        });
+        Lobby.getContentPane().add(classificaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 140, 30));
+
+        jScrollPane1.setViewportView(classificaL);
+
+        Classifica.getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         setLocationRelativeTo(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -354,6 +370,14 @@ public class MemoryGame extends java.awt.Frame {
         initGame();
         
     }//GEN-LAST:event_onevsaiActionPerformed
+
+    private void classificaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classificaBtnActionPerformed
+        // TODO add your handling code here:
+        ArrayList<Utente> classifica = 
+        
+        this.Classifica.setVisible(true);
+        
+    }//GEN-LAST:event_classificaBtnActionPerformed
 
     ///////////////////////
     
@@ -513,11 +537,14 @@ public class MemoryGame extends java.awt.Frame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame CambiaPassword;
+    private javax.swing.JFrame Classifica;
     private javax.swing.JFrame Lobby;
     private javax.swing.JFrame LoginForm;
     private javax.swing.JFrame RegisterForm;
     private javax.swing.JLabel avversarioLabel;
     private java.awt.Button cambiaPwd;
+    private java.awt.Button classificaBtn;
+    private javax.swing.JList<String> classificaL;
     private java.awt.Label errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -525,6 +552,7 @@ public class MemoryGame extends java.awt.Frame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private java.awt.Label label1;
     private java.awt.Label label2;
