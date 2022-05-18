@@ -8,6 +8,7 @@ import Backend.GestoreFile;
 import Backend.GestoreUtenti;
 import Backend.Partita;
 import Backend.Utente;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.util.ArrayList;
@@ -330,7 +331,7 @@ public class MemoryGame extends java.awt.Frame {
         // TODO add your handling code here:
         
         this.g.cambiaPassword(utente, this.newPwdLabel.getText());
-        
+        //this.CambiaPassword.setMinimumSize(new Dimension(300, 180));
         this.CambiaPassword.setVisible(false);
         
     }//GEN-LAST:event_cambiaPwdActionPerformed
@@ -389,6 +390,7 @@ public class MemoryGame extends java.awt.Frame {
             list += "Giocatore: " + c.get(i).getNickName() + " punti: " + c.get(i).getPunti() + "\n";
         }
         this.clArea.setText(list);
+        this.clArea.setEditable(false);
         
         this.Classifica.setSize(600, 400);
         this.Classifica.setLocationRelativeTo(null);
