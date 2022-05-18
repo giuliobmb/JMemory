@@ -102,6 +102,7 @@ public class MemoryGame extends java.awt.Frame {
         puntiA = new javax.swing.JLabel();
 
         LoginForm.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        LoginForm.setBackground(new java.awt.Color(67, 169, 154));
         LoginForm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -157,10 +158,11 @@ public class MemoryGame extends java.awt.Frame {
         });
         RegisterForm.getContentPane().add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 180, 40));
 
+        CambiaPassword.setMinimumSize(new java.awt.Dimension(300, 200));
         CambiaPassword.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Inserisci la nuova password");
-        CambiaPassword.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 140, 30));
+        CambiaPassword.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 170, 30));
         CambiaPassword.getContentPane().add(newPwdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 150, 20));
 
         cambiaPwd.setLabel("Cambia password");
@@ -329,7 +331,8 @@ public class MemoryGame extends java.awt.Frame {
 
     private void cambiaPwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiaPwdActionPerformed
         // TODO add your handling code here:
-        
+        if(this.newPwdLabel.getText().compareToIgnoreCase("") == 0)
+            return;
         this.g.cambiaPassword(utente, this.newPwdLabel.getText());
         //this.CambiaPassword.setMinimumSize(new Dimension(300, 180));
         this.CambiaPassword.setVisible(false);
@@ -494,8 +497,8 @@ public class MemoryGame extends java.awt.Frame {
         p.handleEvent(evt);
         System.out.println("evt");
         //if(gameMode == 1){
-            this.puntiA.setText(String.valueOf(p.getPuntiA()));
-            this.puntiU.setText(String.valueOf(p.getPuntiU()));
+        this.puntiA.setText(String.valueOf(p.getPuntiA()));
+        this.puntiU.setText(String.valueOf(p.getPuntiU()));
         //}
         this.tesserePanel.removeAll();
         ArrayList<Tessera> t = p.getTessere();
@@ -506,7 +509,6 @@ public class MemoryGame extends java.awt.Frame {
         System.out.println(p.getTessere().size());
         if(this.p.getTessere().size() == 0 && this.gameMode == 1){
             this.tesserePanel.removeAll();
-            this.revalidate();
             this.repaint();
             Label victory = new Label();
             if(p.getPuntiU() > p.getPuntiA()){
@@ -537,6 +539,8 @@ public class MemoryGame extends java.awt.Frame {
             this.setVisible(false);
             this.Lobby.setVisible(true);
         }
+
+        this.repaint();
         
     }
 
