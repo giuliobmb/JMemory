@@ -130,11 +130,21 @@ public class Partita implements Serializable{
                 if(this.coppiaU[0].getId().compareToIgnoreCase(this.coppiaU[1].getId()) == 0){
                     System.out.println("punto utente");
                     this.puntiU++;
-                    this.coppiaU[0].giraTessera();
-                    this.coppiaU[1].giraTessera();
+                    //this.coppiaU[0].giraTessera();
+                    //this.coppiaU[1].giraTessera();
+                    this.coppiaU[0].removeMouseListener(this.coppiaU[0].getMouseListeners()[0]);
+                    this.coppiaU[1].removeMouseListener(this.coppiaU[1].getMouseListeners()[0]);
+                    
+                    
+                    
                     this.coppiaU = new Tessera[2];
                     this.turno = 1;
                 }else{
+                    try {
+                        Thread.sleep(1500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Partita.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     this.coppiaU[0].giraTessera();
                     this.coppiaU[1].giraTessera();
                     this.coppiaU = new Tessera[2];
