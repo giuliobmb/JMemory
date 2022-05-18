@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -102,6 +103,7 @@ public class Partita implements Serializable{
             index++;
             
         }
+        Collections.shuffle(tessere);
         
     }
     
