@@ -452,7 +452,7 @@ public class MemoryGame extends java.awt.Frame {
                 this.ntessere = 28;
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
-                this.avversarioLabel.setVisible(false);
+                this.remove(this.jPanel3);
                 
                 this.p = new Partita(this.utente, this.avversario, ntessere);
                 t = p.getTessere();

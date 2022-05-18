@@ -52,8 +52,8 @@ public class Tessera extends JButton {
             this.setIcon(new ImageIcon(this.picture));
         }else{
             this.tessera = 0;
-            this.setIcon(new ImageIcon(this.dorso));
             
+            this.setIcon(new ImageIcon(this.dorso));
         }
     }
     

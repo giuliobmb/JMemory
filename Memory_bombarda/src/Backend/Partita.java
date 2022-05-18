@@ -117,9 +117,15 @@ public class Partita implements Serializable{
     
     public void handleEvent(java.awt.event.MouseEvent evt){
         //((Tessera)evt.getSource()).giraTessera();
+        
         if(turno == 0){
             System.out.println("turno utente");
             if(this.coppiaU[0] == null){
+                try{
+                this.coppiaA[0].giraTessera();
+                this.coppiaA[1].giraTessera();
+                }catch(NullPointerException e){}
+                this.coppiaA = new Tessera[2];
                 this.coppiaU[0] = (Tessera)evt.getSource();
                 this.coppiaU[0].giraTessera();
             }else{
@@ -140,12 +146,11 @@ public class Partita implements Serializable{
                     
                     
                     this.coppiaU = new Tessera[2];
-                    this.turno = 1;
+                    if(this.gameMode == 1)
+                        this.turno = 1;
                 }else{
                     
-                    this.coppiaU[0].giraTessera();
-                    this.coppiaU[1].giraTessera();
-                    this.coppiaU = new Tessera[2];
+                    
                     this.turno = 1;
                 }
                 
@@ -153,6 +158,11 @@ public class Partita implements Serializable{
         }else{
             System.out.println("turno avversario");
             if(this.coppiaA[0] == null){
+                try{
+                    this.coppiaU[0].giraTessera();
+                    this.coppiaU[1].giraTessera();
+                }catch(NullPointerException e){}
+                this.coppiaU = new Tessera[2];
                 this.coppiaA[0] = (Tessera)evt.getSource();
                 this.coppiaA[0].giraTessera();
             }else{
@@ -176,9 +186,7 @@ public class Partita implements Serializable{
                     this.turno = 0;
                 }else{
                     
-                    this.coppiaA[0].giraTessera();
-                    this.coppiaA[1].giraTessera();
-                    this.coppiaA = new Tessera[2];
+                    
                     this.turno = 0;
                 }
 
@@ -189,7 +197,7 @@ public class Partita implements Serializable{
         System.out.println(turno);
         
     }
-    
+
 
     public Utente getUtente() {
         return utente;
@@ -244,6 +252,4 @@ public class Partita implements Serializable{
         return "Partita{" + "utente=" + utente + ", avversario=" + avversario + ", puntiU=" + puntiU + ", puntiA=" + puntiA + ", tessere=" + tessere + ", data=" + data + '}';
     }
 
-    
-    
 }
