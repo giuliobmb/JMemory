@@ -61,6 +61,7 @@ public class Utente implements Serializable{
         this.punti++;
         
     }
+    
 
     @Override
     public String toString() {

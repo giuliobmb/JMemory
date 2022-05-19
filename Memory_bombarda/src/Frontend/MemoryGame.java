@@ -4,6 +4,7 @@
  */
 package Frontend;
 
+
 import Backend.GestoreFile;
 import Backend.GestoreUtenti;
 import Backend.Partita;
@@ -395,6 +396,7 @@ public class MemoryGame extends java.awt.Frame {
     private void onevsaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onevsaiActionPerformed
         // TODO add your handling code here:
         this.gameMode = 3;
+        this.avversario = new Utente("Bot", "");
         this.Lobby.setVisible(false);
         initGame();
         
@@ -498,6 +500,35 @@ public class MemoryGame extends java.awt.Frame {
                 
                 break;
             case 3:
+                this.ntessere = 28;
+                this.setSize(this.getMinimumSize());
+                this.utenteLabel.setText(this.utente.getNickName());
+                this.avversarioLabel.setText(this.avversario.getNickName());
+                
+                this.p = new Partita(this.utente, this.avversario, ntessere);
+                t = p.getTessere();
+                
+                this.puntiA.setText(String.valueOf(this.p.getPuntiA()));
+                this.puntiU.setText(String.valueOf(this.p.getPuntiU()));
+                
+                for (int i = 0; i < t.size(); i++) {
+                    t.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
+                        public void mouseReleased(java.awt.event.MouseEvent evt) {
+                            eventHandle(evt);
+                        }
+                    });
+                    Tessera te = t.get(i);
+                    this.tesserePanel.add(te);
+                    
+                    this.puntiA.setText(String.valueOf(p.getPuntiA()));
+                    this.puntiU.setText(String.valueOf(p.getPuntiU()));
+                }
+                
+                this.Lobby.setVisible(false);
+                this.setLocationRelativeTo(null);
+                this.setVisible(true);
+                
                 
                 
                 break;

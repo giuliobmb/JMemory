@@ -30,6 +30,7 @@ public class Partita implements Serializable{
     private Tessera[] coppiaA;
     private int turno;
     
+    
     private ArrayList<Tessera> tessere;
     private int gameMode;
     private LocalDateTime data;
@@ -107,12 +108,22 @@ public class Partita implements Serializable{
         
     }
     
+    
     public void addPunto(char p){
         if(p == 'a' || p == 'A'){
             this.puntiA++;
         }else{
             this.puntiU++;
         }
+    }
+    
+    private Tessera cercaCoppia(Tessera t){
+        for (int i = 0; i < this.tessere.size(); i++) {
+            if(tessere.get(i).getId().compareToIgnoreCase(t.getId())==0 && tessere.get(i).getPosition() != t.getPosition())
+                return tessere.get(i);
+        }
+        return null;
+        
     }
     
     public void handleEvent(java.awt.event.MouseEvent evt){
@@ -146,7 +157,7 @@ public class Partita implements Serializable{
                     
                     
                     this.coppiaU = new Tessera[2];
-                    if(this.gameMode == 1)
+                    if(this.gameMode == 1 && this.gameMode == 2)
                         this.turno = 1;
                 }else{
                     
@@ -156,43 +167,62 @@ public class Partita implements Serializable{
                 
             }
         }else{
-            System.out.println("turno avversario");
-            if(this.coppiaA[0] == null){
-                try{
-                    this.coppiaU[0].giraTessera();
-                    this.coppiaU[1].giraTessera();
-                }catch(NullPointerException e){}
+            if(this.gameMode == 3){
+                System.out.println("turno bot");
+                this.coppiaU[0].giraTessera();
+                this.coppiaU[1].giraTessera();
+                if(Math.random()*100 < 12){
+                    this.coppiaA[0] = this.coppiaU[0];
+                    this.coppiaA[1] = this.cercaCoppia(this.coppiaU[0]);
+                    this.coppiaA[0].giraTessera();
+                    this.coppiaA[1].giraTessera();
+                }else{
+                    this.coppiaA[0] = this.coppiaU[0];
+                    this.coppiaA[1] = tessere.get((int) (Math.random()*tessere.size()));
+                    this.coppiaA[0].giraTessera();
+                    this.coppiaA[1].giraTessera();
+                }
                 this.coppiaU = new Tessera[2];
-                this.coppiaA[0] = (Tessera)evt.getSource();
-                this.coppiaA[0].giraTessera();
-            }else{
-                this.coppiaA[1] = (Tessera)evt.getSource();
-                if(this.coppiaA[0].getPosition() == this.coppiaA[1].getPosition())
-                    return;
-                
-                this.coppiaA[1].giraTessera();
                 System.out.println(this.coppiaA[0].getId());
                 System.out.println(this.coppiaA[1].getId());
                 if(this.coppiaA[0].getId().compareToIgnoreCase(this.coppiaA[1].getId()) == 0){
-                    System.out.println("punto avversario");
-                    this.puntiA++;
+                        System.out.println("punto bot");
+                        this.puntiA++;
+                        //this.coppiaU[0].giraTessera();
+                        //this.coppiaU[1].giraTessera();
+                        tessere.remove(this.coppiaA[0]);
+                        tessere.remove(this.coppiaA[1]);
+
+                }
+                this.turno = 0;    
+            
+            }else if(this.gameMode == 1){
+                this.coppiaU[1] = (Tessera)evt.getSource();
+                if(this.coppiaU[0].getPosition() == this.coppiaU[1].getPosition())
+                    return;
+                
+                this.coppiaU[1].giraTessera();
+                System.out.println(this.coppiaU[0].getId());
+                System.out.println(this.coppiaU[1].getId());
+                if(this.coppiaU[0].getId().compareToIgnoreCase(this.coppiaU[1].getId()) == 0){
+                    System.out.println("punto utente");
+                    this.puntiU++;
                     //this.coppiaU[0].giraTessera();
                     //this.coppiaU[1].giraTessera();
-                    tessere.remove(this.coppiaA[0]);
-                    tessere.remove(this.coppiaA[1]);
+                    tessere.remove(this.coppiaU[0]);
+                    tessere.remove(this.coppiaU[1]);
                     
                     
-                    this.coppiaA = new Tessera[2];
-                    this.turno = 0;
+                    this.coppiaU = new Tessera[2];
+                    if(this.gameMode == 1)
+                        this.turno = 1;
                 }else{
-                    
-                    
-                    this.turno = 0;
+                    this.turno = 1;
                 }
-
             }
-
         }
+        
+        
         
         System.out.println(turno);
         
