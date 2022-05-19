@@ -4,7 +4,6 @@
  */
 package Frontend;
 
-
 import Backend.GestoreFile;
 import Backend.GestoreUtenti;
 import Backend.Partita;
@@ -28,7 +27,6 @@ public class MemoryGame extends java.awt.Frame {
     /**
      * Creates new form MemoryGame
      */
-    
     private GestoreUtenti g;
     private GestoreFile f;
     private Utente utente;
@@ -37,7 +35,7 @@ public class MemoryGame extends java.awt.Frame {
     private int logMode;
     private int gameMode;
     private int ntessere;
-    
+
     public MemoryGame() {
         initComponents();
         g = new GestoreUtenti();
@@ -309,50 +307,51 @@ public class MemoryGame extends java.awt.Frame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        
-        if(nickField.getText().compareToIgnoreCase("") != 0 && pwdField.getText().compareToIgnoreCase("") != 0){
+
+        if (nickField.getText().compareToIgnoreCase("") != 0 && pwdField.getText().compareToIgnoreCase("") != 0) {
             Utente u = g.logUtente(nickField.getText(), pwdField.getText());
 
-            if(u != null){
-                if(this.logMode == 0){
+            if (u != null) {
+                if (this.logMode == 0) {
                     this.utente = u;
                     this.LoginForm.setVisible(false);
                     initLobby();
-                }else{
+                } else {
                     this.avversario = u;
                     this.logMode = 0;
                     this.gameMode = 1;
                     this.LoginForm.setVisible(false);
                     initGame();
                 }
-                
-            }else{
+
+            } else {
                 errorLabel.setText("nickname o password non validi");
             }
 
-        }else{
+        } else {
             errorLabel.setText("campi invalidi");
         }
-        
+
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void lobbyPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lobbyPasswordActionPerformed
         // TODO add your handling code here:
-        
+
         this.CambiaPassword.setSize(this.CambiaPassword.getMinimumSize());
         this.CambiaPassword.setLocationRelativeTo(null);
         this.CambiaPassword.setVisible(true);
-        
+
     }//GEN-LAST:event_lobbyPasswordActionPerformed
 
     private void cambiaPwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiaPwdActionPerformed
         // TODO add your handling code here:
-        if(this.newPwdLabel.getText().compareToIgnoreCase("") == 0)
+        if (this.newPwdLabel.getText().compareToIgnoreCase("") == 0) {
             return;
+        }
         this.g.cambiaPassword(utente, this.newPwdLabel.getText());
         //this.CambiaPassword.setMinimumSize(new Dimension(300, 180));
         this.CambiaPassword.setVisible(false);
-        
+
     }//GEN-LAST:event_cambiaPwdActionPerformed
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
@@ -364,25 +363,25 @@ public class MemoryGame extends java.awt.Frame {
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
-        if(nickLabel.getText().compareToIgnoreCase("") != 0 && pwdLabel.getText().compareToIgnoreCase("") != 0){
+        if (nickLabel.getText().compareToIgnoreCase("") != 0 && pwdLabel.getText().compareToIgnoreCase("") != 0) {
             g.addUtente(new Utente(nickLabel.getText(), pwdLabel.getText()));
             errorLabel.setText("");
             this.RegisterForm.setVisible(false);
 
-        }else{
+        } else {
             errorLabel.setText("campi invalidi");
         }
-        
+
     }//GEN-LAST:event_registerBtnActionPerformed
 
     private void onevsoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onevsoneActionPerformed
         // TODO add your handling code here:
-        
+
         this.logMode = 1;
         this.gameMode = 1;
         this.LoginForm.setLocationRelativeTo(null);
         this.LoginForm.setVisible(true);
-        
+
     }//GEN-LAST:event_onevsoneActionPerformed
 
     private void solitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solitarioActionPerformed
@@ -390,7 +389,7 @@ public class MemoryGame extends java.awt.Frame {
         this.gameMode = 2;
         this.Lobby.setVisible(false);
         initGame();
-        
+
     }//GEN-LAST:event_solitarioActionPerformed
 
     private void onevsaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onevsaiActionPerformed
@@ -399,7 +398,7 @@ public class MemoryGame extends java.awt.Frame {
         this.avversario = new Utente("Bot", "");
         this.Lobby.setVisible(false);
         initGame();
-        
+
     }//GEN-LAST:event_onevsaiActionPerformed
 
     private void classificaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classificaBtnActionPerformed
@@ -411,27 +410,25 @@ public class MemoryGame extends java.awt.Frame {
         }
         this.clArea.setText(list);
         this.clArea.setEditable(false);
-        
+
         this.Classifica.setSize(600, 400);
         this.Classifica.setLocationRelativeTo(null);
         this.Classifica.setVisible(true);
-        
+
     }//GEN-LAST:event_classificaBtnActionPerformed
 
     ///////////////////////
-    
-    private void initLobby(){
-        
+    private void initLobby() {
+
         this.Lobby.setSize(600, 400);
         this.nicknameLabel.setText(this.utente.getNickName());
         this.winsLabel.setText(String.valueOf(this.utente.getPunti()));
         this.Lobby.setLocationRelativeTo(null);
         this.Lobby.setVisible(true);
-        
-        
+
     }
-    
-    private void initGame(){
+
+    private void initGame() {
         ArrayList<Tessera> t;
         switch (this.gameMode) {
             case 1:
@@ -439,14 +436,14 @@ public class MemoryGame extends java.awt.Frame {
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setText(this.avversario.getNickName());
-                
+
                 this.p = new Partita(this.utente, this.avversario, ntessere);
                 p.setGameMode(gameMode);
                 t = p.getTessere();
-                
+
                 this.puntiA.setText(String.valueOf(this.p.getPuntiA()));
                 this.puntiU.setText(String.valueOf(this.p.getPuntiU()));
-                
+
                 for (int i = 0; i < t.size(); i++) {
                     t.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
                         @Override
@@ -456,17 +453,15 @@ public class MemoryGame extends java.awt.Frame {
                     });
                     Tessera te = t.get(i);
                     this.tesserePanel.add(te);
-                    
+
                     this.puntiA.setText(String.valueOf(p.getPuntiA()));
                     this.puntiU.setText(String.valueOf(p.getPuntiU()));
                 }
-                
+
                 this.Lobby.setVisible(false);
                 this.setLocationRelativeTo(null);
                 this.setVisible(true);
-                
-                
-                
+
                 break;
 
             case 2:
@@ -474,13 +469,13 @@ public class MemoryGame extends java.awt.Frame {
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.remove(this.jPanel3);
-                
+
                 this.p = new Partita(this.utente, this.avversario, ntessere);
                 p.setGameMode(gameMode);
                 t = p.getTessere();
-                
+
                 this.puntiA.setText(String.valueOf(this.p.getPuntiA()));
-                
+
                 for (int i = 0; i < t.size(); i++) {
                     t.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
                         @Override
@@ -490,31 +485,30 @@ public class MemoryGame extends java.awt.Frame {
                     });
                     Tessera te = t.get(i);
                     this.tesserePanel.add(te);
-                    
+
                     this.puntiA.setText(String.valueOf(p.getPuntiA()));
                     this.puntiU.setText(String.valueOf(p.getPuntiU()));
                 }
-                
+
                 this.Lobby.setVisible(false);
                 this.setLocationRelativeTo(null);
                 this.setVisible(true);
-                
-                
+
                 break;
             case 3:
                 this.ntessere = 28;
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setText(this.avversario.getNickName());
-                
+
                 this.p = new Partita(this.utente, this.avversario, ntessere);
                 p.setGameMode(gameMode);
-                
+
                 t = p.getTessere();
-                
+
                 this.puntiA.setText(String.valueOf(this.p.getPuntiA()));
                 this.puntiU.setText(String.valueOf(this.p.getPuntiU()));
-                
+
                 for (int i = 0; i < t.size(); i++) {
                     t.get(i).addMouseListener(new java.awt.event.MouseAdapter() {
                         @Override
@@ -524,24 +518,24 @@ public class MemoryGame extends java.awt.Frame {
                     });
                     Tessera te = t.get(i);
                     this.tesserePanel.add(te);
-                    
+
                     this.puntiA.setText(String.valueOf(p.getPuntiA()));
                     this.puntiU.setText(String.valueOf(p.getPuntiU()));
                 }
-                
+
                 this.Lobby.setVisible(false);
                 this.setLocationRelativeTo(null);
                 this.setVisible(true);
-                
+
                 break;
             default:
                 break;
         }
-        
+
     }
-    
-    public void eventHandle(java.awt.event.MouseEvent evt){
-        
+
+    public void eventHandle(java.awt.event.MouseEvent evt) {
+
         p.handleEvent(evt);
         System.out.println("evt");
         //if(gameMode == 1){
@@ -555,17 +549,16 @@ public class MemoryGame extends java.awt.Frame {
             this.tesserePanel.add(te);
         }
         System.out.println(p.getTessere().size());
-        if(this.p.getTessere().size() == 0 && this.gameMode == 1){
+        if (this.p.getTessere().size() == 0 && this.gameMode == 1) {
             this.tesserePanel.removeAll();
             this.repaint();
             Label victory = new Label();
-            if(p.getPuntiU() > p.getPuntiA()){
+            if (p.getPuntiU() > p.getPuntiA()) {
                 this.utente.addPunto();
                 g.scriviUtenti();
                 victory.setText("Vittoria " + p.getUtente().getNickName());
                 System.out.println("vittoria utente");//this.add(new JLabel("Vittoria " + p.getUtente().getNickName()));
-            }
-            else{
+            } else {
                 this.avversario.addPunto();
                 g.scriviUtenti();
                 victory.setText("Vittoria " + p.getAvversario().getNickName());
@@ -579,17 +572,17 @@ public class MemoryGame extends java.awt.Frame {
             }
             this.setVisible(false);
             this.Lobby.setVisible(true);
-            
-        }else if(this.p.getTessere().size() == 0 && this.gameMode == 2){
+
+        } else if (this.p.getTessere().size() == 0 && this.gameMode == 2) {
             this.setVisible(false);
             this.Lobby.setVisible(true);
-        }else if(this.p.getTessere().size() == 0 && this.gameMode == 3){
+        } else if (this.p.getTessere().size() == 0 && this.gameMode == 3) {
             this.setVisible(false);
             this.Lobby.setVisible(true);
         }
 
         this.repaint();
-        
+
     }
 
     /////////////////////////

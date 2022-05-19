@@ -23,12 +23,13 @@ import javax.swing.JLabel;
  * @author giuliobmb
  */
 public class Tessera extends JButton {
+
     private String id;
     private int tessera;
     private BufferedImage picture;
     private BufferedImage dorso;
     private int position;
-    
+
     public Tessera(BufferedImage picture) {
         this.id = this.id = UUID.randomUUID().toString();
         this.tessera = 0;
@@ -38,26 +39,24 @@ public class Tessera extends JButton {
         } catch (IOException ex) {
             Logger.getLogger(Tessera.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        ImageIcon i = new ImageIcon(this.dorso);
-        
-        this.setIcon(i);
-        
-    }
-    
-    public void giraTessera(){
 
-        if(tessera == 0){
+        ImageIcon i = new ImageIcon(this.dorso);
+
+        this.setIcon(i);
+
+    }
+
+    public void giraTessera() {
+
+        if (tessera == 0) {
             this.tessera = 1;
             this.setIcon(new ImageIcon(this.picture));
-        }else{
+        } else {
             this.tessera = 0;
-            
+
             this.setIcon(new ImageIcon(this.dorso));
         }
     }
-    
-    
 
     @Override
     public boolean equals(Object obj) {
@@ -95,17 +94,10 @@ public class Tessera extends JButton {
     public void setId(String id) {
         this.id = id;
     }
-    
-    
-    
-    
+
     @Override
     public String toString() {
         return "Tessera{" + "id=" + id + ", tessera=" + tessera + ", picture=" + picture + ", dorso=" + dorso + ", position=" + position + '}';
     }
-    
-    
-    
-    
-    
+
 }

@@ -311,10 +311,11 @@ public class Partita implements Serializable {
                 }
             } else {
                 System.out.println("turno bot");
-                try{
-                this.coppiaU[0].giraTessera();
-                this.coppiaU[1].giraTessera();
-                }catch(NullPointerException e){}
+                try {
+                    this.coppiaU[0].giraTessera();
+                    this.coppiaU[1].giraTessera();
+                } catch (NullPointerException e) {
+                }
                 if (Math.random() * 100 < 12) {
                     this.coppiaA[0] = this.coppiaU[0];
                     this.coppiaA[1] = this.cercaCoppia(this.coppiaU[0]);
@@ -336,7 +337,7 @@ public class Partita implements Serializable {
                     //this.coppiaU[1].giraTessera();
                     tessere.remove(this.coppiaA[0]);
                     tessere.remove(this.coppiaA[1]);
-                    
+
                 }
                 this.turno = 0;
             }

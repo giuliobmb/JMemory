@@ -12,7 +12,8 @@ import java.util.UUID;
  *
  * @author giuliobmb
  */
-public class Utente implements Serializable{
+public class Utente implements Serializable {
+
     private String nickName;
     private String password;
     private String id;
@@ -56,18 +57,15 @@ public class Utente implements Serializable{
     public void setPunti(int punti) {
         this.punti = punti;
     }
-    
-    public void addPunto(){
+
+    public void addPunto() {
         this.punti++;
-        
+
     }
-    
 
     @Override
     public String toString() {
         return "Utente{" + "nickName=" + nickName + ", password=" + password + ", id=" + id + ", punti=" + punti + '}';
     }
-
-    
 
 }

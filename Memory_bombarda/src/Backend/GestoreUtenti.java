@@ -11,43 +11,46 @@ import java.util.ArrayList;
  * @author giuliobmb
  */
 public class GestoreUtenti {
+
     private ArrayList<Utente> utenti;
     private GestoreFile g;
 
     public GestoreUtenti() {
         g = new GestoreFile("utenti.bin", "logs.log");
-        if(g.leggiUtenti() != null)
+        if (g.leggiUtenti() != null) {
             this.utenti = g.leggiUtenti();
-        else
+        } else {
             this.utenti = new ArrayList<Utente>();
+        }
     }
-    
-    public void addUtente(Utente u){
+
+    public void addUtente(Utente u) {
         utenti.add(u);
         g.scriviUtenti(utenti);
         g.printLog("Aggiunto un nuovo utente " + u.toString());
     }
-    
-    public Utente logUtente(String nickName, String password){
-        if(g.leggiUtenti() != null)
+
+    public Utente logUtente(String nickName, String password) {
+        if (g.leggiUtenti() != null) {
             this.utenti = g.leggiUtenti();
-        else
+        } else {
             this.utenti = new ArrayList<Utente>();
+        }
         for (int i = 0; i < utenti.size(); i++) {
             Utente temp = utenti.get(i);
-            if(temp.getNickName().equalsIgnoreCase(nickName) && temp.getPassword().equalsIgnoreCase(password)){
+            if (temp.getNickName().equalsIgnoreCase(nickName) && temp.getPassword().equalsIgnoreCase(password)) {
                 System.out.println("Loggato utente: " + temp.toString());
                 g.printLog("Loggato utente: " + temp.toString());
                 return temp;
-            }    
+            }
         }
         return null;
     }
-    
-    public void cambiaPassword(Utente u, String password){
+
+    public void cambiaPassword(Utente u, String password) {
         Utente temp;
         for (int i = 0; i < utenti.size(); i++) {
-            if(utenti.get(i).getId().compareToIgnoreCase(u.getId()) == 0){
+            if (utenti.get(i).getId().compareToIgnoreCase(u.getId()) == 0) {
                 temp = utenti.get(i);
                 temp.setPassword(password);
                 utenti.set(i, temp);
@@ -56,15 +59,15 @@ public class GestoreUtenti {
             g.scriviUtenti(utenti);
             g.printLog("cambio password utente: " + u.toString());
         }
-        
+
     }
-    
-    public ArrayList<Utente> getClassifica(){
+
+    public ArrayList<Utente> getClassifica() {
         ArrayList<Utente> c = this.utenti;
-        
+
         for (int i = 0; i < c.size(); i++) {
             for (int j = i; j < c.size(); j++) {
-                if(c.get(i).getPunti() < c.get(j).getPunti()){
+                if (c.get(i).getPunti() < c.get(j).getPunti()) {
                     Utente t = c.get(i);
                     c.set(i, c.get(j));
                     c.set(j, t);
@@ -73,13 +76,13 @@ public class GestoreUtenti {
         }
         return c;
     }
-    
+
     public ArrayList<Utente> getUtenti() {
         return utenti;
     }
-    public void scriviUtenti(){
+
+    public void scriviUtenti() {
         g.scriviUtenti(utenti);
     }
-    
-    
+
 }
