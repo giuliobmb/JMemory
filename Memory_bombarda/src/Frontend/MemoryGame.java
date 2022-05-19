@@ -441,6 +441,7 @@ public class MemoryGame extends java.awt.Frame {
                 this.avversarioLabel.setText(this.avversario.getNickName());
                 
                 this.p = new Partita(this.utente, this.avversario, ntessere);
+                p.setGameMode(gameMode);
                 t = p.getTessere();
                 
                 this.puntiA.setText(String.valueOf(this.p.getPuntiA()));
@@ -475,6 +476,7 @@ public class MemoryGame extends java.awt.Frame {
                 this.remove(this.jPanel3);
                 
                 this.p = new Partita(this.utente, this.avversario, ntessere);
+                p.setGameMode(gameMode);
                 t = p.getTessere();
                 
                 this.puntiA.setText(String.valueOf(this.p.getPuntiA()));
@@ -506,6 +508,8 @@ public class MemoryGame extends java.awt.Frame {
                 this.avversarioLabel.setText(this.avversario.getNickName());
                 
                 this.p = new Partita(this.utente, this.avversario, ntessere);
+                p.setGameMode(gameMode);
+                
                 t = p.getTessere();
                 
                 this.puntiA.setText(String.valueOf(this.p.getPuntiA()));
@@ -528,8 +532,6 @@ public class MemoryGame extends java.awt.Frame {
                 this.Lobby.setVisible(false);
                 this.setLocationRelativeTo(null);
                 this.setVisible(true);
-                
-                
                 
                 break;
             default:
