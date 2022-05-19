@@ -66,12 +66,13 @@ public class MemoryGame extends java.awt.Frame {
         pwdField = new java.awt.TextField();
         loginBtn = new java.awt.Button();
         RegisterForm = new javax.swing.JFrame();
-        label4 = new java.awt.Label();
-        nickLabel = new java.awt.TextField();
-        pwdLabel = new java.awt.TextField();
-        label5 = new java.awt.Label();
-        label6 = new java.awt.Label();
+        jPanel1 = new javax.swing.JPanel();
         registerBtn = new java.awt.Button();
+        label6 = new java.awt.Label();
+        label5 = new java.awt.Label();
+        pwdLabel = new java.awt.TextField();
+        nickLabel = new java.awt.TextField();
+        label4 = new java.awt.Label();
         CambiaPassword = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         newPwdLabel = new java.awt.TextField();
@@ -101,78 +102,110 @@ public class MemoryGame extends java.awt.Frame {
         puntiA = new javax.swing.JLabel();
 
         LoginForm.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        LoginForm.setMaximumSize(new java.awt.Dimension(400, 400));
+        LoginForm.setMinimumSize(new java.awt.Dimension(400, 400));
+        LoginForm.setPreferredSize(new java.awt.Dimension(400, 400));
+        LoginForm.setResizable(false);
         LoginForm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LoginPanel.setBackground(new java.awt.Color(67, 169, 154));
         LoginPanel.setToolTipText("");
+        LoginPanel.setMaximumSize(new java.awt.Dimension(400, 400));
+        LoginPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        LoginPanel.setPreferredSize(new java.awt.Dimension(400, 400));
         LoginPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        errorLabel.setAlignment(java.awt.Label.CENTER);
         errorLabel.setBackground(new java.awt.Color(67, 169, 154));
-        LoginPanel.add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 190, -1));
+        errorLabel.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
+        LoginPanel.add(errorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 400, -1));
 
         regBtn.setBackground(new java.awt.Color(255, 217, 130));
-        regBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        regBtn.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         regBtn.setLabel("Registrati");
         regBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regBtnActionPerformed(evt);
             }
         });
-        LoginPanel.add(regBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 120, 40));
+        LoginPanel.add(regBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 120, 35));
 
+        label1.setAlignment(java.awt.Label.CENTER);
         label1.setBackground(new java.awt.Color(67, 169, 154));
-        label1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        label1.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
         label1.setForeground(new java.awt.Color(255, 255, 255));
-        label1.setText("JMemory - Login");
-        LoginPanel.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, -1, 60));
+        label1.setText("JMEMORY | LOGIN");
+        LoginPanel.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 60));
 
         label2.setBackground(new java.awt.Color(67, 169, 154));
+        label2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         label2.setForeground(new java.awt.Color(255, 255, 255));
         label2.setText("Nickname");
-        LoginPanel.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+        LoginPanel.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         label3.setBackground(new java.awt.Color(67, 169, 154));
+        label3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         label3.setForeground(new java.awt.Color(255, 255, 255));
         label3.setText("Password");
-        LoginPanel.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
+        LoginPanel.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         nickField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        LoginPanel.add(nickField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 120, -1));
-        LoginPanel.add(pwdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 120, -1));
+        nickField.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
+        nickField.setSelectionEnd(0);
+        LoginPanel.add(nickField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 200, -1));
+
+        pwdField.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
+        pwdField.setSelectionEnd(0);
+        LoginPanel.add(pwdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 200, -1));
 
         loginBtn.setBackground(new java.awt.Color(255, 217, 130));
-        loginBtn.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        loginBtn.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         loginBtn.setLabel("Login");
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
             }
         });
-        LoginPanel.add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 120, 50));
+        LoginPanel.add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 120, 35));
 
-        LoginForm.getContentPane().add(LoginPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        LoginForm.getContentPane().add(LoginPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 
+        RegisterForm.setMaximumSize(new java.awt.Dimension(400, 400));
+        RegisterForm.setMinimumSize(new java.awt.Dimension(400, 400));
+        RegisterForm.setPreferredSize(new java.awt.Dimension(400, 400));
         RegisterForm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label4.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        label4.setText("Registrati");
-        RegisterForm.getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
-        RegisterForm.getContentPane().add(nickLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 110, -1));
-        RegisterForm.getContentPane().add(pwdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 110, -1));
+        jPanel1.setBackground(new java.awt.Color(255, 192, 168));
+        jPanel1.setMaximumSize(new java.awt.Dimension(400, 400));
+        jPanel1.setMinimumSize(new java.awt.Dimension(400, 400));
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 400));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label5.setText("Nickname");
-        RegisterForm.getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, -1));
-
-        label6.setText("Password");
-        RegisterForm.getContentPane().add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
-
-        registerBtn.setLabel("Registrati");
+        registerBtn.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        registerBtn.setLabel("INVIA");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerBtnActionPerformed(evt);
             }
         });
-        RegisterForm.getContentPane().add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 180, 40));
+        jPanel1.add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 120, 35));
+
+        label6.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        label6.setText("Password");
+        jPanel1.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        label5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        label5.setText("Nickname");
+        jPanel1.add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        jPanel1.add(pwdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 200, -1));
+        jPanel1.add(nickLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 200, -1));
+
+        label4.setAlignment(java.awt.Label.CENTER);
+        label4.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
+        label4.setText("REGISTRATI");
+        jPanel1.add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 60));
+
+        RegisterForm.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 
         CambiaPassword.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -356,7 +389,7 @@ public class MemoryGame extends java.awt.Frame {
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
         // TODO add your handling code here:
-        this.RegisterForm.setSize(600, 400);
+        this.RegisterForm.setSize(400,400);
         this.RegisterForm.setLocationRelativeTo(null);
         this.RegisterForm.setVisible(true);
     }//GEN-LAST:event_regBtnActionPerformed
@@ -593,7 +626,7 @@ public class MemoryGame extends java.awt.Frame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 MemoryGame g = new MemoryGame();
-                g.LoginForm.setSize(400, 350);
+                //g.LoginForm.setSize(400, 330);
                 g.LoginForm.setLocationRelativeTo(null);
                 g.LoginForm.setVisible(true);
             }
@@ -618,6 +651,7 @@ public class MemoryGame extends java.awt.Frame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
