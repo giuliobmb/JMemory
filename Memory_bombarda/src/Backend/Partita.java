@@ -231,13 +231,21 @@ public class Partita implements Serializable {
      */
     public void handleEvent(java.awt.event.MouseEvent evt) {
         //((Tessera)evt.getSource()).giraTessera();
-
+        
         if (turno == 0) {
             System.out.println("turno utente");
             if (this.coppiaU[0] == null) {
+                
                 try {
+                        this.coppiaU[0].giraTessera();
+                        this.coppiaU[1].giraTessera();
+                        this.coppiaU = new Tessera[2];
+                    }catch (NullPointerException e) {
+                }
+                try{
                     this.coppiaA[0].giraTessera();
                     this.coppiaA[1].giraTessera();
+                    
                 } catch (NullPointerException e) {
                 }
                 this.coppiaA = new Tessera[2];
@@ -261,12 +269,14 @@ public class Partita implements Serializable {
                     tessere.remove(this.coppiaU[1]);
 
                     this.coppiaA = new Tessera[2];
-                    if (this.gameMode == 1 || this.gameMode == 3) {
-                        this.turno = 0;
-                    }
+                    this.turno = 0;
                 } else {
-
-                    this.turno = 1;
+                    if(this.gameMode == 1 || this.gameMode == 3){
+                        this.turno = 1;
+                    }else{
+                        this.turno = 0;
+                        
+                    }
                 }
 
             }
@@ -309,7 +319,7 @@ public class Partita implements Serializable {
                     }
 
                 }
-            } else {
+            } else if(this.gameMode == 3){
                 System.out.println("turno bot");
                 try {
                     this.coppiaU[0].giraTessera();
