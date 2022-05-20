@@ -102,9 +102,7 @@ public class MemoryGame extends java.awt.Frame {
         puntiA = new javax.swing.JLabel();
 
         LoginForm.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        LoginForm.setMaximumSize(new java.awt.Dimension(400, 400));
         LoginForm.setMinimumSize(new java.awt.Dimension(400, 400));
-        LoginForm.setPreferredSize(new java.awt.Dimension(400, 400));
         LoginForm.setResizable(false);
         LoginForm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -151,11 +149,9 @@ public class MemoryGame extends java.awt.Frame {
 
         nickField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         nickField.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
-        nickField.setSelectionEnd(0);
         LoginPanel.add(nickField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 200, -1));
 
         pwdField.setFont(new java.awt.Font("Dubai", 0, 12)); // NOI18N
-        pwdField.setSelectionEnd(0);
         LoginPanel.add(pwdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 200, -1));
 
         loginBtn.setBackground(new java.awt.Color(255, 217, 130));
@@ -170,9 +166,7 @@ public class MemoryGame extends java.awt.Frame {
 
         LoginForm.getContentPane().add(LoginPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 
-        RegisterForm.setMaximumSize(new java.awt.Dimension(400, 400));
         RegisterForm.setMinimumSize(new java.awt.Dimension(400, 400));
-        RegisterForm.setPreferredSize(new java.awt.Dimension(400, 400));
         RegisterForm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 192, 168));
