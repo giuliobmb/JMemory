@@ -330,9 +330,12 @@ public class Partita implements Serializable {
                 } catch (NullPointerException e) {
                 }
                 if (Math.random() * 100 < 30) {
-                    this.coppiaA[0] = this.coppiaU[0];
+                    this.coppiaA[0] = this.coppiaU[0]; 
                     this.coppiaA[1] = this.cercaCoppia(this.coppiaU[0]);
                     if (this.coppiaA[0] == null) {
+                        this.coppiaA[0] = tessere.get((int) (Math.random() * tessere.size()));
+                        
+                    }else if(this.coppiaA[1] == null){
                         this.coppiaA[1] = tessere.get((int) (Math.random() * tessere.size()));
                     }
                     this.coppiaA[0].giraTessera();
