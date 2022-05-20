@@ -262,7 +262,7 @@ public class Partita implements Serializable {
 
                     this.coppiaA = new Tessera[2];
                     if (this.gameMode == 1 || this.gameMode == 3) {
-                        this.turno = 1;
+                        this.turno = 0;
                     }
                 } else {
 
@@ -302,7 +302,7 @@ public class Partita implements Serializable {
                         tessere.remove(this.coppiaA[1]);
 
                         this.coppiaA = new Tessera[2];
-                        this.turno = 0;
+                        this.turno = 1;
                     } else {
 
                         this.turno = 0;
@@ -319,6 +319,8 @@ public class Partita implements Serializable {
                 if (Math.random() * 100 < 12) {
                     this.coppiaA[0] = this.coppiaU[0];
                     this.coppiaA[1] = this.cercaCoppia(this.coppiaU[0]);
+                    if(this.coppiaA[0] == null)
+                        this.coppiaA[1] = tessere.get((int) (Math.random() * tessere.size()));
                     this.coppiaA[0].giraTessera();
                     this.coppiaA[1].giraTessera();
                 } else {
@@ -327,7 +329,7 @@ public class Partita implements Serializable {
                     this.coppiaA[0].giraTessera();
                     this.coppiaA[1].giraTessera();
                 }
-                this.coppiaU = new Tessera[2];
+                
                 System.out.println(this.coppiaA[0].getId());
                 System.out.println(this.coppiaA[1].getId());
                 if (this.coppiaA[0].getId().compareToIgnoreCase(this.coppiaA[1].getId()) == 0) {
@@ -337,9 +339,12 @@ public class Partita implements Serializable {
                     //this.coppiaU[1].giraTessera();
                     tessere.remove(this.coppiaA[0]);
                     tessere.remove(this.coppiaA[1]);
-
+                    this.turno = 1;
+                }else{
+                    this.turno = 0;
+                    this.coppiaU = new Tessera[2];
                 }
-                this.turno = 0;
+                
             }
 
         }
