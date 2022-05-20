@@ -231,21 +231,25 @@ public class Partita implements Serializable {
      */
     public void handleEvent(java.awt.event.MouseEvent evt) {
         //((Tessera)evt.getSource()).giraTessera();
-        
+
         if (turno == 0) {
             System.out.println("turno utente");
-            if (this.coppiaU[0] == null) {
-                
+            
+            if (this.gameMode == 2 && this.coppiaU[1] != null) {
                 try {
-                        this.coppiaU[0].giraTessera();
-                        this.coppiaU[1].giraTessera();
-                        this.coppiaU = new Tessera[2];
-                    }catch (NullPointerException e) {
+                    this.coppiaU[0].giraTessera();
+                    this.coppiaU[1].giraTessera();
+                    this.coppiaU = new Tessera[2];
+                } catch (NullPointerException e) {
+                    System.out.println("null pointer");
                 }
-                try{
+            }
+            if (this.coppiaU[0] == null) {
+
+                try {
                     this.coppiaA[0].giraTessera();
                     this.coppiaA[1].giraTessera();
-                    
+
                 } catch (NullPointerException e) {
                 }
                 this.coppiaA = new Tessera[2];
@@ -271,11 +275,10 @@ public class Partita implements Serializable {
                     this.coppiaA = new Tessera[2];
                     this.turno = 0;
                 } else {
-                    if(this.gameMode == 1 || this.gameMode == 3){
+                    if (this.gameMode == 1 || this.gameMode == 3) {
                         this.turno = 1;
-                    }else{
+                    } else {
                         this.turno = 0;
-                        
                     }
                 }
 
@@ -319,18 +322,19 @@ public class Partita implements Serializable {
                     }
 
                 }
-            } else if(this.gameMode == 3){
+            } else if (this.gameMode == 3) {
                 System.out.println("turno bot");
                 try {
                     this.coppiaU[0].giraTessera();
                     this.coppiaU[1].giraTessera();
                 } catch (NullPointerException e) {
                 }
-                if (Math.random() * 100 < 12) {
+                if (Math.random() * 100 < 30) {
                     this.coppiaA[0] = this.coppiaU[0];
                     this.coppiaA[1] = this.cercaCoppia(this.coppiaU[0]);
-                    if(this.coppiaA[0] == null)
+                    if (this.coppiaA[0] == null) {
                         this.coppiaA[1] = tessere.get((int) (Math.random() * tessere.size()));
+                    }
                     this.coppiaA[0].giraTessera();
                     this.coppiaA[1].giraTessera();
                 } else {
@@ -339,7 +343,7 @@ public class Partita implements Serializable {
                     this.coppiaA[0].giraTessera();
                     this.coppiaA[1].giraTessera();
                 }
-                
+
                 System.out.println(this.coppiaA[0].getId());
                 System.out.println(this.coppiaA[1].getId());
                 if (this.coppiaA[0].getId().compareToIgnoreCase(this.coppiaA[1].getId()) == 0) {
@@ -350,11 +354,11 @@ public class Partita implements Serializable {
                     tessere.remove(this.coppiaA[0]);
                     tessere.remove(this.coppiaA[1]);
                     this.turno = 1;
-                }else{
+                } else {
                     this.turno = 0;
                     this.coppiaU = new Tessera[2];
                 }
-                
+
             }
 
         }
