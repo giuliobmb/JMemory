@@ -73,6 +73,7 @@ public class MemoryGame extends java.awt.Frame {
         pwdLabel = new java.awt.TextField();
         nickLabel = new java.awt.TextField();
         label4 = new java.awt.Label();
+        regErr = new java.awt.Label();
         CambiaPassword = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         newPwdLabel = new java.awt.TextField();
@@ -198,6 +199,9 @@ public class MemoryGame extends java.awt.Frame {
         label4.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
         label4.setText("REGISTRATI");
         jPanel1.add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 60));
+
+        regErr.setAlignment(java.awt.Label.CENTER);
+        jPanel1.add(regErr, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 400, -1));
 
         RegisterForm.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 
@@ -372,7 +376,7 @@ public class MemoryGame extends java.awt.Frame {
 
     private void cambiaPwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiaPwdActionPerformed
         // TODO add your handling code here:
-        if (this.newPwdLabel.getText().compareToIgnoreCase("") == 0) {
+        if (this.newPwdLabel.getText().compareToIgnoreCase("") == 0 || this.newPwdLabel.getText().length() < 6) {
             return;
         }
         this.g.cambiaPassword(utente, this.newPwdLabel.getText());
@@ -390,14 +394,26 @@ public class MemoryGame extends java.awt.Frame {
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
-        if (nickLabel.getText().compareToIgnoreCase("") != 0 && pwdLabel.getText().compareToIgnoreCase("") != 0) {
-            g.addUtente(new Utente(nickLabel.getText(), pwdLabel.getText()));
-            errorLabel.setText("");
-            this.RegisterForm.setVisible(false);
-
-        } else {
-            errorLabel.setText("campi invalidi");
+        int cod = g.addUtente(new Utente(nickLabel.getText(), pwdLabel.getText()));
+        System.out.println(cod);
+        switch(cod){
+            case 0:
+                regErr.setText("");
+                this.RegisterForm.setVisible(false);
+                break;
+            case -1:
+                regErr.setText("Compila tutti i campi");
+                break;
+            case -2:
+                regErr.setText("La lunghezza della password deve essere superiore ai 6 caratteri");
+                break;
+            case -3:
+                regErr.setText("Utente già registrato");
+                break;
+                
+                
         }
+        
 
     }//GEN-LAST:event_registerBtnActionPerformed
 
@@ -669,6 +685,7 @@ public class MemoryGame extends java.awt.Frame {
     private java.awt.TextField pwdField;
     private java.awt.TextField pwdLabel;
     private java.awt.Button regBtn;
+    private java.awt.Label regErr;
     private java.awt.Button registerBtn;
     private java.awt.Button solitario;
     private javax.swing.JPanel tesserePanel;

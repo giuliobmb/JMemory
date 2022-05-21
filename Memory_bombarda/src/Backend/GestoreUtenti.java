@@ -24,10 +24,19 @@ public class GestoreUtenti {
         }
     }
 
-    public void addUtente(Utente u) {
+    public int addUtente(Utente u) {
+        if(u.getNickName().equalsIgnoreCase("") || u.getPassword().equalsIgnoreCase(""))
+            return -1;
+        if(u.getPassword().length()<6)
+            return -2;
+        for (int i = 0; i < utenti.size(); i++) {
+            if(utenti.get(i).getNickName().equalsIgnoreCase(u.getNickName()))
+                return -3;
+        }
         utenti.add(u);
         g.scriviUtenti(utenti);
         g.printLog("Aggiunto un nuovo utente " + u.toString());
+        return 0;
     }
 
     public Utente logUtente(String nickName, String password) {
