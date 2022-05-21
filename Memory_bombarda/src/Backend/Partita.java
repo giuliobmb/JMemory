@@ -251,6 +251,7 @@ public class Partita implements Serializable {
                     this.coppiaA[1].giraTessera();
 
                 } catch (NullPointerException e) {
+                    System.out.println("nullo giro");
                 }
                 this.coppiaA = new Tessera[2];
                 this.coppiaU[0] = (Tessera) evt.getSource();
@@ -334,7 +335,7 @@ public class Partita implements Serializable {
                     this.coppiaA[1] = this.cercaCoppia(this.coppiaU[0]);
                     if (this.coppiaA[0] == null) {
                         this.coppiaA[0] = tessere.get((int) (Math.random() * tessere.size()));
-                        
+                        this.coppiaA[1] = tessere.get((int) (Math.random() * tessere.size()));
                     }else if(this.coppiaA[1] == null){
                         this.coppiaA[1] = tessere.get((int) (Math.random() * tessere.size()));
                     }
@@ -342,6 +343,8 @@ public class Partita implements Serializable {
                     this.coppiaA[1].giraTessera();
                 } else {
                     this.coppiaA[0] = this.coppiaU[0];
+                    if (this.coppiaA[0] == null) 
+                        this.coppiaA[0] = tessere.get((int) (Math.random() * tessere.size()));
                     this.coppiaA[1] = tessere.get((int) (Math.random() * tessere.size()));
                     this.coppiaA[0].giraTessera();
                     this.coppiaA[1].giraTessera();
@@ -359,8 +362,9 @@ public class Partita implements Serializable {
                     this.turno = 1;
                 } else {
                     this.turno = 0;
-                    this.coppiaU = new Tessera[2];
+                    
                 }
+                this.coppiaU = new Tessera[2];
 
             }
 
