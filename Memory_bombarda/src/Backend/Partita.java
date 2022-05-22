@@ -234,7 +234,10 @@ public class Partita implements Serializable {
 
         if (turno == 0) {
             System.out.println("turno utente");
-            
+            try{
+            if (this.coppiaA[0].getPosition() == this.coppiaA[1].getPosition()) 
+                return;
+            }catch(NullPointerException e){}
             if (this.gameMode == 2 && this.coppiaU[1] != null) {
                 try {
                     this.coppiaU[0].giraTessera();

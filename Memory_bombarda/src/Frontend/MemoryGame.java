@@ -205,10 +205,11 @@ public class MemoryGame extends java.awt.Frame {
 
         RegisterForm.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 
+        CambiaPassword.setMaximumSize(new java.awt.Dimension(230, 124));
         CambiaPassword.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Inserisci la nuova password");
-        CambiaPassword.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 140, 30));
+        CambiaPassword.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 270, 30));
         CambiaPassword.getContentPane().add(newPwdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 150, 20));
 
         cambiaPwd.setLabel("Cambia password");
@@ -368,7 +369,7 @@ public class MemoryGame extends java.awt.Frame {
     private void lobbyPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lobbyPasswordActionPerformed
         // TODO add your handling code here:
 
-        this.CambiaPassword.setSize(this.CambiaPassword.getMinimumSize());
+        this.CambiaPassword.setSize(370, 220);
         this.CambiaPassword.setLocationRelativeTo(null);
         this.CambiaPassword.setVisible(true);
 
