@@ -19,7 +19,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 
 /**
- *
+ *classe di frontend contenente tutti i componenti necessari al funzionamento dell'interfaccia di gioco
+ * 
  * @author giuliobmb
  */
 public class MemoryGame extends java.awt.Frame {
@@ -462,6 +463,10 @@ public class MemoryGame extends java.awt.Frame {
     }//GEN-LAST:event_classificaBtnActionPerformed
 
     ///////////////////////
+    
+    /**
+     * classe che inizializza e gestisce la lobby
+     */
     private void initLobby() {
 
         this.Lobby.setSize(600, 400);
@@ -471,7 +476,9 @@ public class MemoryGame extends java.awt.Frame {
         this.Lobby.setVisible(true);
 
     }
-
+    /***
+     * classe che inizializza l'ambiente di gioco e gestisce le sue variabili, ad esempio le tessere
+     */
     private void initGame() {
         ArrayList<Tessera> t;
         switch (this.gameMode) {
@@ -578,6 +585,10 @@ public class MemoryGame extends java.awt.Frame {
 
     }
 
+    /**
+     * gestore degli eventi che si interfaccia con le classi di backend
+     * @param evt 
+     */
     public void eventHandle(java.awt.event.MouseEvent evt) {
 
         p.handleEvent(evt);

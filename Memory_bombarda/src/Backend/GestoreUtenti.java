@@ -7,6 +7,7 @@ package Backend;
 import java.util.ArrayList;
 
 /**
+ * classe di backend che si occupa della gestione degli eventi
  *
  * @author giuliobmb
  */
@@ -23,7 +24,13 @@ public class GestoreUtenti {
             this.utenti = new ArrayList<Utente>();
         }
     }
-
+    
+    /**
+     * int addUtente(Utente u)
+     * questo metodo permette di aggiungere un utente al database controllando che rispetti i criteri della password
+     * @param u
+     * @return 
+     */
     public int addUtente(Utente u) {
         if(u.getNickName().equalsIgnoreCase("") || u.getPassword().equalsIgnoreCase(""))
             return -1;
@@ -39,6 +46,14 @@ public class GestoreUtenti {
         return 0;
     }
 
+    /**
+     * Utente logUtente(String nickName, String password)
+     * metodo che permette di controllare l'accesso degli utenti, se ritorna null l'accesso è fallito, se ritorna l'utente l'accesso è avvenuto con successo
+     * 
+     * @param nickName
+     * @param password
+     * @return 
+     */
     public Utente logUtente(String nickName, String password) {
         if (g.leggiUtenti() != null) {
             this.utenti = g.leggiUtenti();
@@ -48,14 +63,20 @@ public class GestoreUtenti {
         for (int i = 0; i < utenti.size(); i++) {
             Utente temp = utenti.get(i);
             if (temp.getNickName().equalsIgnoreCase(nickName) && temp.getPassword().equalsIgnoreCase(password)) {
-                System.out.println("Loggato utente: " + temp.toString());
-                g.printLog("Loggato utente: " + temp.toString());
+                System.out.println("Loggato utente: " + temp.getNickName());
+                g.printLog("Loggato utente: " + temp.getNickName());
                 return temp;
             }
         }
         return null;
     }
-
+    /**
+     * void cambiaPassword(Utente u, String password)
+     * metodo che aggiorna il database cambiando la password dell'utente che la richiede
+     * 
+     * @param u utente che richiede il cambio password
+     * @param password nuova password
+     */
     public void cambiaPassword(Utente u, String password) {
         Utente temp;
         for (int i = 0; i < utenti.size(); i++) {
@@ -66,7 +87,7 @@ public class GestoreUtenti {
                 System.out.println(temp.toString());
             }
             g.scriviUtenti(utenti);
-            g.printLog("cambio password utente: " + u.toString());
+            g.printLog("cambio password utente: " + u.getNickName());
         }
 
     }

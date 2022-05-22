@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
-/**
- *
+/**Utente
+ *classe utente, contiene i dati dell'utente e ne facilita la gestione
  * @author giuliobmb
  */
 public class Utente implements Serializable {

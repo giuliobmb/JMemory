@@ -19,7 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
- *
+ *  classe tessera, estende il bottone che viene sollecitato per ogni click
  * @author giuliobmb
  */
 public class Tessera extends JButton {
@@ -46,6 +46,11 @@ public class Tessera extends JButton {
 
     }
 
+    /**
+     * void giraTessera()
+     * 
+     * metodo che simula l'azione di girare la tessera invertendo l'immagine del dorso con quella della tessera
+     */
     public void giraTessera() {
 
         if (tessera == 0) {
@@ -58,26 +63,7 @@ public class Tessera extends JButton {
         }
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Tessera other = (Tessera) obj;
-        if (this.tessera != other.tessera) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
+
 
     public int getPosition() {
         return position;

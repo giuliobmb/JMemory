@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
- *
+ *  classe GestoreFile che gestisce l'input e output dei file relativi agli utenti e ai logs
  * @author giuliobmb
  */
 public class GestoreFile {
@@ -35,6 +35,13 @@ public class GestoreFile {
 
     }
     
+    
+    /**
+     * ArrayList<Utente> leggiUtenti()
+     * funzione che legge il singolo oggetto ArrayList dal file binario utenti.bin
+     * 
+     * @return oggetto contenente gli utenti
+     */
     public ArrayList<Utente> leggiUtenti(){
         try {
             FileInputStream f = new FileInputStream(this.nomeBin);
@@ -49,6 +56,11 @@ public class GestoreFile {
         return null;
     }
     
+    /**
+     * void scriviUtenti(ArrayList<Utente> a)
+     * funzione che scrive il singolo oggetto ArrayList dal file binario utenti.bin
+     * @param a struttura dati contenente gli utenti
+     */
     public void scriviUtenti(ArrayList<Utente> a){
         try {
             FileOutputStream f = new FileOutputStream(this.nomeBin);
@@ -59,6 +71,12 @@ public class GestoreFile {
             System.out.println("errore scriviUtenti" + ex);
         }
     }
+    
+    /**
+     * void printLog(String log)
+     * stampa il log nel file logs. log allegando nellla stringa la data e l'ora della scrittura
+     * @param log 
+     */
     
     public void printLog(String log){
         try {
