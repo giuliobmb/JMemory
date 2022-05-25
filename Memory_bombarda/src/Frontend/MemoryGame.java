@@ -636,7 +636,7 @@ public class MemoryGame extends java.awt.Frame {
             this.Lobby.setVisible(true);
         }
 
-        this.repaint();
+        //this.repaint();
 
     }
 
