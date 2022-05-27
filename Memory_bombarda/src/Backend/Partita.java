@@ -267,12 +267,12 @@ public class Partita implements Serializable {
             
         }else{
             if(Math.random()*100<10){
-                this.buffer[0] = this.memoria[Math.random()*memoria.size()];
+                this.buffer[0] = this.memoria.get((int)Math.random()*memoria.size());
                 this.buffer[1] = this.cercaCoppia(this.buffer[0]);
                 this.buffer[0].giraTessera();
             }else{
-                this.buffer[0] = this.memoria[Math.random()*memoria.size()];
-                this.buffer[1] = this.memoria[Math.random()*memoria.size()];
+                this.buffer[0] = this.memoria.get((int)Math.random()*memoria.size());
+                this.buffer[1] = this.memoria.get((int)Math.random()*memoria.size());
             }
             
             
