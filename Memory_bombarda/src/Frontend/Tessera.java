@@ -30,6 +30,13 @@ public class Tessera extends JButton {
     private BufferedImage dorso;
     private int position;
 
+    /**
+     * la classe Tessera richiede in input un oggetto BufferedImage che conterrà il puntatore all'immagine della tessera, 
+     * vengono inizializzate le variabili id e tessera e viene caricata e impostata l'immagine del dorso come icona sul bottone
+     * l'immmagine è caricata come BufferedImage e viene creato un oggetto icona che verrà inserito nel bottone con il metodo setIcon()
+     * @param picture 
+     */
+    
     public Tessera(BufferedImage picture) {
         this.id = this.id = UUID.randomUUID().toString();
         this.tessera = 0;

@@ -89,6 +89,8 @@ public class MemoryGame extends java.awt.Frame {
         onevsai = new java.awt.Button();
         lobbyPassword = new java.awt.Button();
         classificaBtn = new java.awt.Button();
+        jLabel4 = new javax.swing.JLabel();
+        selectD = new javax.swing.JComboBox<>();
         Classifica = new javax.swing.JFrame();
         jScrollPane2 = new javax.swing.JScrollPane();
         clArea = new javax.swing.JTextArea();
@@ -206,7 +208,6 @@ public class MemoryGame extends java.awt.Frame {
 
         RegisterForm.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 
-        CambiaPassword.setMaximumSize(new java.awt.Dimension(230, 124));
         CambiaPassword.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Inserisci la nuova password");
@@ -222,6 +223,9 @@ public class MemoryGame extends java.awt.Frame {
         CambiaPassword.getContentPane().add(cambiaPwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
 
         Lobby.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        Lobby.setMaximumSize(new java.awt.Dimension(600, 400));
+        Lobby.setMinimumSize(new java.awt.Dimension(600, 400));
+        Lobby.setPreferredSize(new java.awt.Dimension(600, 400));
         Lobby.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nicknameLabel.setText("jLabel2");
@@ -234,7 +238,7 @@ public class MemoryGame extends java.awt.Frame {
         Lobby.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         label7.setText("Seleziona modalità");
-        Lobby.getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
+        Lobby.getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, -1, -1));
 
         onevsone.setLabel("1VS1");
         onevsone.addActionListener(new java.awt.event.ActionListener() {
@@ -242,7 +246,7 @@ public class MemoryGame extends java.awt.Frame {
                 onevsoneActionPerformed(evt);
             }
         });
-        Lobby.getContentPane().add(onevsone, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+        Lobby.getContentPane().add(onevsone, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
 
         solitario.setLabel("Solitario");
         solitario.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +254,7 @@ public class MemoryGame extends java.awt.Frame {
                 solitarioActionPerformed(evt);
             }
         });
-        Lobby.getContentPane().add(solitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
+        Lobby.getContentPane().add(solitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, -1, -1));
 
         onevsai.setLabel("1VSAI");
         onevsai.addActionListener(new java.awt.event.ActionListener() {
@@ -258,7 +262,7 @@ public class MemoryGame extends java.awt.Frame {
                 onevsaiActionPerformed(evt);
             }
         });
-        Lobby.getContentPane().add(onevsai, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+        Lobby.getContentPane().add(onevsai, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
 
         lobbyPassword.setLabel("Cambia Password");
         lobbyPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -275,6 +279,12 @@ public class MemoryGame extends java.awt.Frame {
             }
         });
         Lobby.getContentPane().add(classificaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 140, 30));
+
+        jLabel4.setText("Imposta difficoltà");
+        Lobby.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        selectD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "facile x 12", "media x 20", "difficile x 26" }));
+        Lobby.getContentPane().add(selectD, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 110, -1));
 
         Classifica.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -463,13 +473,25 @@ public class MemoryGame extends java.awt.Frame {
     }//GEN-LAST:event_classificaBtnActionPerformed
 
     ///////////////////////
+    private int getT(){
+        switch(selectD.getSelectedIndex()){
+            case 0:
+                return 12;
+            case 1:
+                return 20;
+            case 2:
+                return 26;
+        }
+        return 18;
+    }
+    
     
     /**
      * classe che inizializza e gestisce la lobby
      */
     private void initLobby() {
 
-        this.Lobby.setSize(600, 400);
+        //this.Lobby.setSize(600, 400);
         this.nicknameLabel.setText(this.utente.getNickName());
         this.winsLabel.setText(String.valueOf(this.utente.getPunti()));
         this.Lobby.setLocationRelativeTo(null);
@@ -483,7 +505,7 @@ public class MemoryGame extends java.awt.Frame {
         ArrayList<Tessera> t;
         switch (this.gameMode) {
             case 1:
-                this.ntessere = 28;
+                this.ntessere = getT();
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setText(this.avversario.getNickName());
@@ -516,7 +538,7 @@ public class MemoryGame extends java.awt.Frame {
                 break;
 
             case 2:
-                this.ntessere = 28;
+                this.ntessere = getT();
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.remove(this.jPanel3);
@@ -547,7 +569,7 @@ public class MemoryGame extends java.awt.Frame {
 
                 break;
             case 3:
-                this.ntessere = 28;
+                this.ntessere = getT();
                 this.setSize(this.getMinimumSize());
                 this.utenteLabel.setText(this.utente.getNickName());
                 this.avversarioLabel.setText(this.avversario.getNickName());
@@ -671,6 +693,7 @@ public class MemoryGame extends java.awt.Frame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -699,6 +722,7 @@ public class MemoryGame extends java.awt.Frame {
     private java.awt.Button regBtn;
     private java.awt.Label regErr;
     private java.awt.Button registerBtn;
+    private javax.swing.JComboBox<String> selectD;
     private java.awt.Button solitario;
     private javax.swing.JPanel tesserePanel;
     private javax.swing.JLabel utenteLabel;
