@@ -27,50 +27,58 @@ public class Partita implements Serializable {
     private Utente avversario;
     private int puntiU;
     private int puntiA;
-    private Tessera[] coppiaU;
-    private Tessera[] coppiaA;
+    private Tessera[] buffer;
     private int turno;
+    private boolean gira;
 
     private ArrayList<Tessera> tessere;
+    private ArrayList<Tessera> tessereD;
+    private ArrayList<Tessera> memoria;
     private int gameMode;
     private LocalDateTime data;
 
     public Partita(Utente u, Utente a, int Ntessere) {
+        this.gira = true;
         this.utente = u;
         this.avversario = a;
         this.tessere = new ArrayList<Tessera>();
+        this.tessereD = new ArrayList<Tessera>();
+        this.memoria = new ArrayList<Tessera>();
         this.loadTessere(Ntessere);
         this.data = LocalDateTime.now();
         this.puntiA = 0;
         this.puntiU = 0;
-        this.coppiaA = new Tessera[2];
-        this.coppiaU = new Tessera[2];
+        this.buffer = new Tessera[2];
         this.turno = 0;
     }
 
     public Partita(Utente u, int Ntessere) {
+        this.gira = true;
         this.utente = u;
         this.avversario = null;
         this.tessere = new ArrayList<Tessera>();
+        this.tessereD = new ArrayList<Tessera>();
+        this.memoria = new ArrayList<Tessera>();
         this.loadTessere(Ntessere);
         this.data = LocalDateTime.now();
         this.puntiA = 0;
         this.puntiU = 0;
-        this.coppiaA = new Tessera[2];
-        this.coppiaU = new Tessera[2];
+        this.buffer = new Tessera[2];
         this.turno = 0;
     }
 
     public Partita(int Ntessere) {
+        this.gira = true;
         this.utente = null;
         this.avversario = null;
         this.tessere = new ArrayList<Tessera>();
+        this.tessereD = new ArrayList<Tessera>();
+        this.memoria = new ArrayList<Tessera>();
         this.loadTessere(Ntessere);
         this.data = LocalDateTime.now();
         this.puntiA = 0;
         this.puntiU = 0;
-        this.coppiaA = new Tessera[2];
-        this.coppiaU = new Tessera[2];
+        this.buffer = new Tessera[2];
         this.turno = 0;
     }
     /**
@@ -119,9 +127,9 @@ public class Partita implements Serializable {
      * @return 
      */
     private Tessera cercaCoppia(Tessera t) {
-        for (int i = 0; i < this.tessere.size(); i++) {
-            if (tessere.get(i).getId().compareToIgnoreCase(t.getId()) == 0 && tessere.get(i).getPosition() != t.getPosition()) {
-                return tessere.get(i);
+        for (int i = 0; i < this.memoria.size(); i++) {
+            if (memoria.get(i).equals(t)) {
+                return memoria.get(i);
             }
         }
         return null;
@@ -134,150 +142,160 @@ public class Partita implements Serializable {
     */
     public void handleEvent(java.awt.event.MouseEvent evt) {
         //((Tessera)evt.getSource()).giraTessera();
-
-        if (turno == 0) {
-            System.out.println("turno utente");
-            try{
-            if (this.coppiaA[0].getPosition() == this.coppiaA[1].getPosition()) 
-                return;
-            }catch(NullPointerException e){}
-            if (this.gameMode == 2 && this.coppiaU[1] != null) {
-                try {
-                    this.coppiaU[0].giraTessera();
-                    this.coppiaU[1].giraTessera();
-                    this.coppiaU = new Tessera[2];
-                } catch (NullPointerException e) {
-                    System.out.println("null pointer");
-                }
-            }
-            if (this.coppiaU[0] == null) {
-
-                try {
-                    this.coppiaA[0].giraTessera();
-                    this.coppiaA[1].giraTessera();
-
-                } catch (NullPointerException e) {
-                    System.out.println("nullo giro");
-                }
-                this.coppiaA = new Tessera[2];
-                this.coppiaU[0] = (Tessera) evt.getSource();
-                this.coppiaU[0].giraTessera();
-            } else {
-                this.coppiaU[1] = (Tessera) evt.getSource();
-                if (this.coppiaU[0].getPosition() == this.coppiaU[1].getPosition()) {
-                    return;
-                }
-
-                this.coppiaU[1].giraTessera();
-                System.out.println(this.coppiaU[0].getId());
-                System.out.println(this.coppiaU[1].getId());
-                if (this.coppiaU[0].getId().compareToIgnoreCase(this.coppiaU[1].getId()) == 0) {
-                    System.out.println("punto utente");
-                    this.puntiU++;
-                    //this.coppiaU[0].giraTessera();
-                    //this.coppiaU[1].giraTessera();
-                    tessere.remove(this.coppiaU[0]);
-                    tessere.remove(this.coppiaU[1]);
-
-                    this.coppiaA = new Tessera[2];
-                    this.turno = 0;
-                } else {
-                    if (this.gameMode == 1 || this.gameMode == 3) {
-                        this.turno = 1;
-                    } else {
-                        this.turno = 0;
-                    }
-                }
-
-            }
-        } else {
-
-            if (this.gameMode == 1) {
-
-                System.out.println("turno avversario");
-                if (this.coppiaA[0] == null) {
-                    try {
-                        this.coppiaU[0].giraTessera();
-                        this.coppiaU[1].giraTessera();
-                    } catch (NullPointerException e) {
-                    }
-                    this.coppiaU = new Tessera[2];
-                    this.coppiaA[0] = (Tessera) evt.getSource();
-                    this.coppiaA[0].giraTessera();
-                } else {
-                    this.coppiaA[1] = (Tessera) evt.getSource();
-                    if (this.coppiaA[0].getPosition() == this.coppiaA[1].getPosition()) {
-                        return;
-                    }
-
-                    this.coppiaA[1].giraTessera();
-                    System.out.println(this.coppiaA[0].getId());
-                    System.out.println(this.coppiaA[1].getId());
-                    if (this.coppiaA[0].getId().compareToIgnoreCase(this.coppiaA[1].getId()) == 0) {
-                        System.out.println("punto avversario");
-                        this.puntiA++;
-                        //this.coppiaU[0].giraTessera();
-                        //this.coppiaU[1].giraTessera();
-                        tessere.remove(this.coppiaA[0]);
-                        tessere.remove(this.coppiaA[1]);
-
-                        this.coppiaA = new Tessera[2];
-                        this.turno = 1;
-                    } else {
-
-                        this.turno = 0;
-                    }
-
-                }
-            } else if (this.gameMode == 3) {
-                System.out.println("turno bot");
-                try {
-                    this.coppiaU[0].giraTessera();
-                    this.coppiaU[1].giraTessera();
-                } catch (NullPointerException e) {
-                }
-                if (Math.random() * 100 < 30) {
-                    this.coppiaA[0] = this.coppiaU[0]; 
-                    this.coppiaA[1] = this.cercaCoppia(this.coppiaU[0]);
-                    if (this.coppiaA[0] == null) {
-                        this.coppiaA[0] = tessere.get((int) (Math.random() * tessere.size()));
-                        this.coppiaA[1] = tessere.get((int) (Math.random() * tessere.size()));
-                    }else if(this.coppiaA[1] == null){
-                        this.coppiaA[1] = tessere.get((int) (Math.random() * tessere.size()));
-                    }
-                    this.coppiaA[0].giraTessera();
-                    this.coppiaA[1].giraTessera();
-                } else {
-                    this.coppiaA[0] = this.coppiaU[0];
-                    if (this.coppiaA[0] == null) 
-                        this.coppiaA[0] = tessere.get((int) (Math.random() * tessere.size()));
-                    this.coppiaA[1] = tessere.get((int) (Math.random() * tessere.size()));
-                    this.coppiaA[0].giraTessera();
-                    this.coppiaA[1].giraTessera();
-                }
-
-                System.out.println(this.coppiaA[0].getId());
-                System.out.println(this.coppiaA[1].getId());
-                if (this.coppiaA[0].getId().compareToIgnoreCase(this.coppiaA[1].getId()) == 0) {
-                    System.out.println("punto bot");
-                    this.puntiA++;
-                    //this.coppiaU[0].giraTessera();
-                    //this.coppiaU[1].giraTessera();
-                    tessere.remove(this.coppiaA[0]);
-                    tessere.remove(this.coppiaA[1]);
-                    this.turno = 1;
-                } else {
-                    this.turno = 0;
-                    
-                }
-                this.coppiaU = new Tessera[2];
-
-            }
-
+        switch(this.gameMode){
+            case 1:
+                handle1v1(evt);
+                break;
+            case 2:
+                handleSolo(evt);
+                break;
+            case 3:
+                handleAi(evt);
+                break;
         }
 
-        System.out.println(turno);
-
+    }
+    
+    
+    public void handle1v1(java.awt.event.MouseEvent evt) {
+        if(tessereD.contains((Tessera)evt.getSource()))
+            return;
+        
+        if(this.buffer[1] != null && this.gira == true){
+            try{
+               this.buffer[0].giraTessera();
+               this.buffer[1].giraTessera();
+               this.buffer[0] = null;
+               this.buffer[1] = null;
+           }catch(NullPointerException e){}   
+        }else if(this.buffer[1] != null){
+            this.buffer[0] = null;
+            this.buffer[1] = null;
+        }
+        
+        if(this.buffer[0] == null){
+            this.buffer[0] = (Tessera)evt.getSource();
+            this.buffer[0].giraTessera();
+        }else{
+            this.buffer[1] = (Tessera)evt.getSource();
+            this.buffer[1].giraTessera();
+            if(this.buffer[0].equals(this.buffer[1])){
+                tessereD.add(this.buffer[0]);
+                tessereD.add(this.buffer[1]);
+                if(turno == 0)
+                    this.puntiU++;
+                else
+                    this.puntiA++;
+                this.gira = false;
+            }else{
+                this.gira = true;
+                turno = (turno+1)%1;
+            }
+        }
+        
+        
+    }
+    
+    public void handleSolo(java.awt.event.MouseEvent evt) {
+        if(tessereD.contains((Tessera)evt.getSource()))
+            return;
+        
+        if(this.buffer[1] != null && this.gira == true){
+            try{
+               this.buffer[0].giraTessera();
+               this.buffer[1].giraTessera();
+               this.buffer[0] = null;
+               this.buffer[1] = null;
+           }catch(NullPointerException e){}   
+        }else if(this.buffer[1] != null){
+            this.buffer[0] = null;
+            this.buffer[1] = null;
+        }
+        
+        if(this.buffer[0] == null){
+            this.buffer[0] = (Tessera)evt.getSource();
+            this.buffer[0].giraTessera();
+        }else{
+            this.buffer[1] = (Tessera)evt.getSource();
+            this.buffer[1].giraTessera();
+            if(this.buffer[0].equals(this.buffer[1])){
+                tessereD.add(this.buffer[0]);
+                tessereD.add(this.buffer[1]);
+                this.puntiU++;
+                this.gira = false;
+            }else
+                this.gira = true;
+            
+        }
+        
+    }
+    
+    public void handleAi(java.awt.event.MouseEvent evt) {
+        if(tessereD.contains((Tessera)evt.getSource()))
+            return;
+        
+        if(this.buffer[1] != null && this.gira == true){
+            try{
+               this.buffer[0].giraTessera();
+               this.buffer[1].giraTessera();
+               this.buffer[0] = null;
+               this.buffer[1] = null;
+           }catch(NullPointerException e){}   
+        }else if(this.buffer[1] != null){
+            this.buffer[0] = null;
+            this.buffer[1] = null;
+        }
+        
+        if(turno == 0){
+        
+            if (this.buffer[0] == null) {
+                this.buffer[0] = (Tessera) evt.getSource();
+                this.buffer[0].giraTessera();
+            } else {
+                this.buffer[1] = (Tessera) evt.getSource();
+                this.buffer[1].giraTessera();
+                if (this.buffer[0].equals(this.buffer[1])) {
+                    tessereD.add(this.buffer[0]);
+                    tessereD.add(this.buffer[1]);
+                    this.puntiU++;
+                    this.gira = false;
+                }else {
+                    this.gira = true;
+                    turno = (turno + 1) % 1;
+                }
+            }
+            
+        }else{
+            if(Math.random()*100<10){
+                this.buffer[0] = this.memoria[Math.random()*memoria.size()];
+                this.buffer[1] = this.cercaCoppia(this.buffer[0]);
+                this.buffer[0].giraTessera();
+            }else{
+                this.buffer[0] = this.memoria[Math.random()*memoria.size()];
+                this.buffer[1] = this.memoria[Math.random()*memoria.size()];
+            }
+            
+            
+            if(this.buffer[0] == null){
+                this.buffer[0] = (Tessera)evt.getSource();
+                this.buffer[0].giraTessera();
+                this.memoria.add(buffer[0]);
+            }else{
+                this.buffer[1] = (Tessera)evt.getSource();
+                this.buffer[1].giraTessera();
+                this.memoria.add(buffer[0]);
+                if(this.buffer[0].equals(this.buffer[1])){
+                    tessereD.add(this.buffer[0]);
+                    tessereD.add(this.buffer[1]);
+                    this.puntiA++;
+                    this.gira = false;
+                }else{
+                    this.gira = true;
+                    turno = (turno+1)%1;
+                }
+            
+        }
+    }
     }
 
     public Utente getUtente() {

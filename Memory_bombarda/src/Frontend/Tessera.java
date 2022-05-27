@@ -70,7 +70,12 @@ public class Tessera extends JButton {
         }
     }
 
-
+    public boolean equals(Tessera t){
+        if(this.id.compareToIgnoreCase(t.getId()) == 0 && this.position != t.getPosition())
+            return true;
+        else
+            return false;
+    }
 
     public int getPosition() {
         return position;

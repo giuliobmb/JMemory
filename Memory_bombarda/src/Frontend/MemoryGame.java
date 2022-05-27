@@ -614,7 +614,7 @@ public class MemoryGame extends java.awt.Frame {
     public void eventHandle(java.awt.event.MouseEvent evt) {
 
         p.handleEvent(evt);
-        System.out.println("evt");
+        //System.out.println("evt");
         //if(gameMode == 1){
         this.puntiA.setText(String.valueOf(p.getPuntiA()));
         this.puntiU.setText(String.valueOf(p.getPuntiU()));
@@ -625,8 +625,8 @@ public class MemoryGame extends java.awt.Frame {
             Tessera te = t.get(i);
             this.tesserePanel.add(te);
         }
-        System.out.println(p.getTessere().size());
-        if (this.p.getTessere().size() == 0 && this.gameMode == 1) {
+        //System.out.println(p.getTessere().size());
+        if (this.p.getPuntiA()+this.p.getPuntiU() == this.ntessere/2 && this.gameMode == 1) {
             this.tesserePanel.removeAll();
             this.repaint();
             Label victory = new Label();
